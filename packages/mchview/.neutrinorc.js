@@ -4,7 +4,8 @@ const jest = require('@neutrinojs/jest');
 
 module.exports = {
   options: {
-    root: __dirname,
+      root: __dirname,
+      tests: 'src'
   },
   use: [
     airbnb(),
@@ -14,6 +15,8 @@ module.exports = {
           template: 'src/index.html'
       }
     }),
-    jest(),
+    jest({
+        setupFilesAfterEnv: ["jest-extended"]
+    })
   ],
 };
