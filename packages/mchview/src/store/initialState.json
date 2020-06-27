@@ -1,0 +1,85 @@
+{
+  "visibility": {
+    "rightPanel": false,
+    "modal": false
+  },
+  "outline": {
+    "deplane": {
+      "show": false,
+      "stroke": "red",
+      "strokeWidth": 0.7
+    },
+    "de": {
+      "show": false,
+      "stroke": "red",
+      "strokeWidth": 0.7
+    },
+    "chamber": {
+      "show": false,
+      "stroke": "black",
+      "strokeWidth": 0.5
+    },
+    "ds": {
+      "show": false,
+      "stroke": "black",
+      "strokeWidth": 0.3
+    },
+    "pad": {
+      "show": false,
+      "stroke": "black",
+      "strokeWidth": 0.1
+    },
+    "cluster": {
+      "show": false,
+      "stroke": "black",
+      "strokeWidth": 0.1
+    },
+    "area": {
+      "show": false,
+      "stroke": "black",
+      "strokeWidth": 0.1
+    }
+  },
+  "view": {
+    "currentElement": null
+  },
+  "data": {
+    "source": 1,
+    "content": [
+      {
+        "dsid": 1125,
+        "value": 11
+      },
+      {
+        "dsid": 1126,
+        "value": 12
+      },
+      {
+        "dsid": 1132,
+        "value": 11
+      }
+    ]
+  },
+  "datasources": [
+    {
+      "url": "localhost:4343",
+      "path": "MUON/OccupancyMap",
+      "run": 297624
+    },
+    {
+      "url": "localhost:4343",
+      "path": "MUON/OccupancyMap",
+      "run": 295820
+    }
+  ],
+  "area": {
+    "xmin": "10",
+    "ymin": "10",
+    "xmax": "12",
+    "ymax": "15"
+  },
+  "envelop": {
+    "entities": {}
+  }
+
+}

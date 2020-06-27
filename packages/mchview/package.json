@@ -1,0 +1,44 @@
+{
+  "name": "mchview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "axios": "^0.19.2",
+    "d3-scale": "^3.2.1",
+    "d3-scale-chromatic": "^1.5.0",
+    "immer": "^7.0.5",
+    "prop-types": "^15",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-hot-loader": "^4",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@neutrinojs/airbnb": "^9.2.0",
+    "@neutrinojs/jest": "^9.2.0",
+    "@neutrinojs/react": "^9.2.0",
+    "eslint": "^7",
+    "jest": "^26",
+    "neutrino": "^9.2.0",
+    "normalizr": "^3.6.0",
+    "polygon-clipping": "^0.14.3",
+    "redux-devtools-extension": "^2.13.8",
+    "webpack": "^4",
+    "webpack-cli": "^3",
+    "webpack-dev-server": "^3"
+  }
+}
