@@ -7,7 +7,7 @@ import * as categories from '../categories';
 
 const mappingServer = () => 'http://localhost:8080/v2';
 
-export const dePlaneName = (bending) => (bending === 'true' || bending === true ? 'bending' : 'non-bending');
+export const dePlaneName = (bending) => (bending == 'true' || bending === true ? 'bending' : 'non-bending');
 
 // initial state
 export const initialState = {};
@@ -64,24 +64,22 @@ export default produce((draft, action) => {
         action.payload,
       ).dualsampas;
     }
-      return draft
   }
 
-  if (action.type === 'FETCH_DEPLANE') {
+  if (action.type == 'FETCH_DEPLANE') {
     return setIsLoading(draft, action.payload.id);
   }
-  if (action.type === 'ERROR_DEPLANE') {
+  if (action.type == 'ERROR_DEPLANE') {
     return clearIsLoading(draft, action.payload.id);
   }
-  if (action.type === 'RECEIVE_DEPLANE') {
+  if (action.type == 'RECEIVE_DEPLANE') {
     const newdata = omit(action.payload.response, ['id', 'bending']);
     clearIsLoading(draft, action.payload.id);
     const { deid, planeName } = deIdAndPlaneName(action.payload.id);
     defaultsDeep(draft, {
       des: { [deid]: { [planeName]: {} } },
     });
-      draft.des[deid][planeName] = newdata;
-      return draft
+    draft.des[deid][planeName] = newdata;
   }
 }, initialState);
 
@@ -139,7 +137,7 @@ export const actions = {
           },
         };
       default:
-            throw `no action known for id=${JSON.stringify(id)}`;
+        throw `no action known for id=${JSON.stringify(id)}`;
     }
   },
 };
@@ -180,7 +178,7 @@ const extractEnvelop = (state, id) => {
       }
       return undefined;
     default:
-      throw new Error(`category for ${JSON.stringify(id)} not handled (yet?)`);
+      throw `category for ${JSON.stringify(id)} not handled (yet?)`;
   }
 };
 

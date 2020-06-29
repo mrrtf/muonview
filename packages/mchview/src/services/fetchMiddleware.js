@@ -7,7 +7,7 @@ import axios from 'axios';
 // otherwise [type]_FAILURE is dispatched
 //
 
-const fetchMiddleware = () => (next) => (action) => {
+const fetchMiddleware = (store) => (next) => (action) => {
   if (!action.payload) {
     return next(action);
   }
@@ -15,18 +15,18 @@ const fetchMiddleware = () => (next) => (action) => {
     return next(action);
   }
 
-  const makeFetchAction = (baseAction) => ({
-    type: `FETCH_${baseAction.type}`,
+  const makeFetchAction = (action) => ({
+    type: `FETCH_${action.type}`,
     payload: {
-      url: baseAction.payload.request.url,
-      id: baseAction.payload.request.id,
+      url: action.payload.request.url,
+      id: action.payload.request.id,
     },
   });
   next(makeFetchAction(action));
 
   const debugTimeOut = 0;
 
-  return setTimeout(() => {
+  setTimeout(() => {
     axios
       .get(action.payload.request.url)
       .then((response) => {
