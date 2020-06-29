@@ -22,7 +22,7 @@ const configureStore = () => {
     reducer,
     composeWithDevTools(applyMiddleware(...middleware)),
   );
-  startup().map((x) => {
+  startup().forEach((x) => {
     store.dispatch(x);
   });
   return store;

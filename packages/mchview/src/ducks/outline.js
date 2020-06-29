@@ -46,14 +46,14 @@ export default (state = initialState, action) => {
   }
   if (action.type === types.ALL) {
     const ns = cloneDeep(state);
-    categories.all.map((x) => {
+    categories.all.forEach((x) => {
       ns[x.key].show = true;
     });
     return ns;
   }
   if (action.type === types.NONE) {
     const ns = cloneDeep(state);
-    categories.all.map((x) => {
+    categories.all.forEach((x) => {
       ns[x.key].show = false;
     });
     return ns;

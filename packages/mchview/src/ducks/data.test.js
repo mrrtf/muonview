@@ -1,5 +1,5 @@
 import expect from 'expect';
-import dataReducer, { actions, types, selectors } from './data.js';
+import dataReducer, { actions, types, selectors } from './data';
 import initialState from '../store/initialState.json';
 
 describe('actions', () => {

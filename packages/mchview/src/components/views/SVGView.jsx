@@ -33,7 +33,7 @@ const SVGView = ({
     return null;
   }
 
-  if (translation == 0) {
+  if (translation === 0) {
     return null;
   }
 
@@ -41,7 +41,7 @@ const SVGView = ({
 
   const w = '100%';
   const h = `${aspectRatio * 100}%`;
-  if (isFinite(h)) {
+  if (Math.isFinite(h)) {
     return null;
   }
   const vx = geo.sx;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Target = ({
-  x, y, color = 'black', scale = 1,
+  x, y, color = 'black', scale = 1.0,
 }) => {
   const w = 4;
   const xleft = x - w;
@@ -27,10 +27,10 @@ const Target = ({
 };
 
 Target.propTypes = {
-  x: PropTypes.number,
-  y: PropTypes.number,
-  color: PropTypes.string,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
   scale: PropTypes.number,
+  color: PropTypes.string,
 };
 
 export default Target;

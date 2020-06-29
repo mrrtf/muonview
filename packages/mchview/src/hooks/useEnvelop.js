@@ -14,7 +14,7 @@ const useEnvelop = (id) => {
   useEffect(() => {
     if (!geo) {
       if (!isLoading && count < 10) {
-        setCount((count) => count + 1);
+        setCount((x) => x + 1);
         const actions = envelop.actions.fetch(id);
         if (Array.isArray(actions)) {
           actions.map((a) => dispatch(a));
@@ -23,7 +23,7 @@ const useEnvelop = (id) => {
         }
       }
     }
-  }, [geo, isLoading, id]);
+  }, [geo, isLoading, id, count, dispatch]);
 
   return {
     isLoading,

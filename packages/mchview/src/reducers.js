@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import { isEqual } from 'lodash';
 import outlineReducer, { selectors as outlineSelectors } from './ducks/outline';
 import viewReducer, { selectors as viewSelectors } from './ducks/view';
 import dataReducer, { selectors as dataSelectors } from './ducks/data';
 import envelopReducer, { selectors as envelopSelectors } from './ducks/envelop';
-import * as categories from './categories';
 
 import visibilityReducer, {
   selectors as visibilitySelectors,
@@ -18,7 +16,7 @@ export default combineReducers({
   area: areaReducer,
   data: dataReducer,
   envelop: envelopReducer,
-  datasources: (state = {}, action) => state,
+  datasources: (state = {}) => state,
 });
 
 // selectors

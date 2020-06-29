@@ -56,8 +56,7 @@ export default (state = initialState, action) => {
     return initialState;
   }
   if (action.type === types.RANDOM_DATA) {
-    console.log(action.payload.dsids);
-    return state;
+    throw new Error('Implement me');
   }
   if (action.type === types.SET) {
     return {
