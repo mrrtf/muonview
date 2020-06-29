@@ -2,11 +2,11 @@ import expect from 'expect';
 import { cloneDeep } from 'lodash';
 import outline, {
   actions, types, initialState, selectors,
-} from './outline.js';
+} from './outline';
 import * as categories from '../categories';
 
 describe('actions', () => {
-  Object.keys(categories.all).map((x) => {
+  Object.keys(categories.all).forEach((x) => {
     const c = categories.all[x];
     it(`should create an action to toggle outline of ${c.name}`, () => {
       const expected = {

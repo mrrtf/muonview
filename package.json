@@ -6,9 +6,5 @@
   ],
   "scripts": {
     "test": "jest"
-  },
-  "devDependencies": {
-    "jest": "^26.1.0",
-    "lerna": "^3.22.1"
   }
 }

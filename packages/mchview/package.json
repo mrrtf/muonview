@@ -17,8 +17,12 @@
     "axios": "^0.19.2",
     "d3-scale": "^3.2.1",
     "d3-scale-chromatic": "^1.5.0",
+    "expect": "^26.1.0",
     "geojson-validation": "^1.0.1",
+    "husky": "^4.2.5",
     "immer": "^7.0.5",
+    "lodash": "^4.17.15",
+    "normalizr": "^3.6.0",
     "prop-types": "^15",
     "react": "^16",
     "react-dom": "^16",
@@ -29,18 +33,6 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@neutrinojs/airbnb": "^9.2.0",
-    "@neutrinojs/jest": "^9.2.0",
-    "@neutrinojs/react": "^9.2.0",
-    "eslint": "^7",
-    "jest": "^26",
-    "jest-extended": "^0.11.5",
-    "neutrino": "^9.2.0",
-    "normalizr": "^3.6.0",
-    "polygon-clipping": "^0.14.3",
-    "redux-devtools-extension": "^2.13.8",
-    "webpack": "^4",
-    "webpack-cli": "^3",
-    "webpack-dev-server": "^3"
+    "prettier": "^2.0.5"
   }
 }
