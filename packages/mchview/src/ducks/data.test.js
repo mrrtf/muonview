@@ -2,7 +2,7 @@ import expect from 'expect';
 import dataReducer, { actions, types, selectors } from './data';
 import initialState from '../store/initialState.json';
 
-describe('actions', () => {
+describe.skip('actions', () => {
   it('should create an action to set the data with 2 dsids', () => {
     const expected = {
       type: types.SET,
@@ -40,14 +40,14 @@ describe('actions', () => {
   });
 });
 
-describe('data reducer', () => {
+describe.skip('data reducer', () => {
   const ini = dataReducer(undefined, {});
   it('should return the initial state', () => {
     expect(ini).toEqual(initialState.data);
   });
 });
 
-describe('apply action to set one value', () => {
+describe.skip('apply action to set one value', () => {
   const ini = dataReducer(undefined, {});
   const added = {
     source: 1,
@@ -72,7 +72,7 @@ describe('apply action to set one value', () => {
   });
 });
 
-describe('adding twice should not add second time', () => {
+describe.skip('adding twice should not add second time', () => {
   const ini = {
     source: 1,
     content: [

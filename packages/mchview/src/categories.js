@@ -115,7 +115,7 @@ export const isSpecific = (id) => {
 };
 
 export const isValidDeId = (deid) => {
-  if (Math.isNaN(deid)) {
+  if (Number.isNaN(deid)) {
     return false;
   }
   return listOfValidDeIds.includes(parseInt(deid, 10));
@@ -170,13 +170,13 @@ export const isValid = (id) => {
     return isValid(parent(id)) && id.bending !== null;
   }
   if (w === ds) {
-    return isValid(parent(id)) && !(Math.isNaN(id.dsid) || id.dsid === null);
+    return isValid(parent(id)) && !(Number.isNaN(id.dsid) || id.dsid === null);
   }
   if (w === pad) {
     if (Object.prototype.hasOwnProperty.call(id, 'padid')) {
-      return isValid(parent(id)) && !Math.isNaN(id.padid);
+      return isValid(parent(id)) && !Number.isNaN(id.padid);
     }
-    return isValid(parent(id)) && !Math.isNaN(id.dsch);
+    return isValid(parent(id)) && !Number.isNaN(id.dsch);
   }
   if (w === cluster) {
     return true;

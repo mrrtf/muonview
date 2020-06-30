@@ -27,7 +27,7 @@ const MchViewPort = () => {
 
   const asInt = (name) => {
     const parsed = parseInt(searchParams.get(name), 10);
-    if (Math.isNaN(parsed)) {
+    if (Number.isNaN(parsed)) {
       return null;
     }
     return parsed;

@@ -151,48 +151,48 @@ describe('nameAll', () => {
 
 describe('describe', () => {
   it('deid:null should be All Detection Elements', () => {
-    expect(categories.describe({ deid: null })).toBe('All Detection Elements');
+    expect(categories.describeId({ deid: null })).toBe('All Detection Elements');
   });
   it('deid:501 should be Detection Element 501', () => {
-    expect(categories.describe({ deid: 501 })).toBe('Detection Element 501');
+    expect(categories.describeId({ deid: 501 })).toBe('Detection Element 501');
   });
   it('deid:null,bending:null should be All Planes', () => {
-    expect(categories.describe({ deid: null, bending: null })).toBe(
+    expect(categories.describeId({ deid: null, bending: null })).toBe(
       'All Planes',
     );
   });
   it('deid:501,bending:true should be Detection Element Plane 501 (Bending)', () => {
-    expect(categories.describe({ deid: 501, bending: true })).toBe(
+    expect(categories.describeId({ deid: 501, bending: true })).toBe(
       'Detection Element 501 Bending Plane',
     );
   });
   it('deid:501,bending:false should be Detection Element Plane 501 (Non-Bending)', () => {
-    expect(categories.describe({ deid: 501, bending: false })).toBe(
+    expect(categories.describeId({ deid: 501, bending: false })).toBe(
       'Detection Element 501 Non-Bending Plane',
     );
   });
   it('deid:null,bending:null,dsid:null should be All Dual Sampas', () => {
-    expect(categories.describe({ deid: null, bending: null, dsid: null })).toBe(
+    expect(categories.describeId({ deid: null, bending: null, dsid: null })).toBe(
       'All Dual Sampas',
     );
   });
   it('deid:501,dsid:null should be Detection Element 501 all ds', () => {
-    expect(categories.describe({ deid: 501, dsid: null })).toBe(
+    expect(categories.describeId({ deid: 501, dsid: null })).toBe(
       'Detection Element 501 All Dual Sampas',
     );
   });
   it('deid:501,bending:true,dsid:2 should be Detection Element Plane 501 (Bending) Dual Sampa 2', () => {
-    expect(categories.describe({ deid: 501, bending: true, dsid: 2 })).toBe(
+    expect(categories.describeId({ deid: 501, bending: true, dsid: 2 })).toBe(
       'Detection Element 501 Bending Plane Dual Sampa 2',
     );
   });
   it('deid:501,dsid:2,dsch:3 should be Detection Element Plane 501 Bending Plane Dual Sampa 2 Channel 3', () => {
-    expect(categories.describe({ deid: 501, dsid: 2, dsch: 3 })).toBe(
+    expect(categories.describeId({ deid: 501, dsid: 2, dsch: 3 })).toBe(
       'Detection Element 501 Dual Sampa 2 Channel 3',
     );
   });
   it('deid:501,padid:1 should be Detection Element Plane 501 Bending Plane PadId 1', () => {
-    expect(categories.describe({ deid: 501, padid: 1 })).toBe(
+    expect(categories.describeId({ deid: 501, padid: 1 })).toBe(
       'Detection Element 501 PadId 1',
     );
   });
