@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { encode } from '../../categories';
 import polygon from '../elements/Polygon';
 import * as categories from '../../categories';
@@ -8,16 +9,16 @@ import * as categories from '../../categories';
 const isWithin = (parent, child) => {
   // FIXME: implement this properly for all categories
   if (
-    categories.whatis(parent) == categories.deplane
-    && categories.whatis(child) == categories.ds
+    categories.whatis(parent) === categories.deplane
+    && categories.whatis(child) === categories.ds
   ) {
-    return parent.deid == child.deid && parent.bending == child.bending;
+    return parent.deid === child.deid && parent.bending === child.bending;
   }
   if (
-    categories.whatis(parent) == categories.deplane
-    && categories.whatis(child) == categories.pad
+    categories.whatis(parent) === categories.deplane
+    && categories.whatis(child) === categories.pad
   ) {
-    return parent.deid == child.deid;
+    return parent.deid === child.deid;
   }
   return false;
 };
@@ -58,6 +59,15 @@ const SVGHighlighter = ({ id, color = 'yellow' }) => {
       style={style}
     />
   );
+};
+
+SVGHighlighter.propTypes = {
+  id: PropTypes.shape({
+    deid: PropTypes.number.isRequired,
+    bending: PropTypes.bool,
+    dsid: PropTypes.number,
+  }),
+  color: PropTypes.string,
 };
 
 export default SVGHighlighter;

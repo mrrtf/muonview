@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const HorizontalLine = ({
   y, xmin, xmax, classname,
 }) => {
-  if (isNaN(y) || isNaN(xmin) || isNaN(xmax)) {
+  if (Math.isNaN(y) || Math.isNaN(xmin) || Math.isNaN(xmax)) {
     return null;
   }
   return (

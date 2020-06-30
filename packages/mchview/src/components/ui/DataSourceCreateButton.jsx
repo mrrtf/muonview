@@ -1,16 +1,15 @@
 import React from 'react';
-// import { actions } from "../../ducks/visibility.js";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { actions as dataActions } from '../../ducks/data.js';
-import { actions as envelopActions } from '../../ducks/envelop';
-import { selectors } from '../../reducers.js';
+import { actions as dataActions } from '../../ducks/data';
+import { selectors } from '../../reducers';
 
 const DataSourceCreateButton = ({
   onClick, deid, bending, dsids,
 }) => (
   <button
-    className={styles.dataSourceCreateButton}
+    type="button"
+    aria-label="create new data source"
     onClick={() => onClick(deid, bending, dsids)}
   >
     New Data Source
@@ -21,6 +20,7 @@ DataSourceCreateButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   deid: PropTypes.number.isRequired,
   bending: PropTypes.bool.isRequired,
+  dsids: PropTypes.arrayOf(PropTypes.number),
 };
 
 const mapDispatchToProps = (dispatch) => ({

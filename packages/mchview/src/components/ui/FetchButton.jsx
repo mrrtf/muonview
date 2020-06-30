@@ -5,8 +5,17 @@ const FetchButton = ({ fetcher, finalizer }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  let msg = 'Fetch';
+  if (isLoading) {
+    msg = 'Loading';
+  }
+  if (isError) {
+    msg = 'Error';
+  }
   return (
     <button
+      type="button"
+      arial-label="fetch"
       className={`fetch${isLoading ? ' loading' : ''}`}
       onClick={() => {
         setIsLoading(true);
@@ -16,14 +25,13 @@ const FetchButton = ({ fetcher, finalizer }) => {
             finalizer();
           },
           () => {
-            console.log('problem');
             setIsError(true);
             setIsLoading(false);
           },
         );
       }}
     >
-      {isLoading ? 'Loading' : isError ? 'Error' : 'Fetch'}
+      {msg}
     </button>
   );
 };

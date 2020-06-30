@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const VerticalLine = ({
   x, ymin, ymax, classname,
 }) => {
-  if (isNaN(x) || isNaN(ymin) || isNaN(ymax)) {
+  if (Math.isNaN(x) || Math.isNaN(ymin) || Math.isNaN(ymax)) {
     return null;
   }
   return (

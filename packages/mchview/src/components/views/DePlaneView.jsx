@@ -15,24 +15,12 @@ import * as categories from '../../categories';
 import Cluster from '../elements/Cluster';
 import pads from '../../store/cluster.json';
 
-{
-  /* <OutlineStyleSelector */
-}
-{
-  /*   value={deOutlineStyle.strokeWidth} */
-}
-{
-  /*   onChange={value => { */
-}
-{
-  /*     setDeOutlineStyle({ ...deOutlineStyle, strokeWidth: value }); */
-}
-{
-  /*   }} */
-}
-{
-  /* /> */
-}
+/* <OutlineStyleSelector */
+/*   value={deOutlineStyle.strokeWidth} */
+/*   onChange={value => { */
+/*     setDeOutlineStyle({ ...deOutlineStyle, strokeWidth: value }); */
+/*   }} */
+/* /> */
 
 const cluster = {
   ...pads,
@@ -47,12 +35,12 @@ const DePlaneView = ({ id }) => {
     dsid: null,
   });
 
-  const [deOutlineStyle, setDeOutlineStyle] = useState({
+  const [deOutlineStyle] = useState({
     stroke: 'lightpink',
     strokeWidth: 0.7,
   });
 
-  const [dsOutlineStyle, setDsOutlineStyle] = useState({
+  const [dsOutlineStyle] = useState({
     stroke: 'lightblue',
     strokeWidth: 0.5,
   });
@@ -144,7 +132,10 @@ const DePlaneView = ({ id }) => {
 };
 
 DePlaneView.propTypes = {
-  id: PropTypes.object.isRequired,
+  id: PropTypes.shape({
+    deid: PropTypes.number,
+    bending: PropTypes.bool,
+  }).isRequired,
 };
 
 export default DePlaneView;

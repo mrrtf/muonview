@@ -12,7 +12,7 @@ const DeView = ({ id }) => (
 DeView.propTypes = {
   id: PropTypes.shape({
     deid: PropTypes.number,
-  }),
+  }).isRequired,
 };
 
 export default DeView;
