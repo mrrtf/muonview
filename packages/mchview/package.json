@@ -7,8 +7,9 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "test": "jest",
-    "lint": "eslint --format codeframe --ext mjs,jsx,js src test",
-    "lint:fix": "yarn lint --fix"
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test",
+    "lint:fix": "npm run lint -- --fix",
+    "coverage": "jest --collectionCoverageFrom=src/**.js --coverage src"
   },
   "dependencies": {
     "@material-ui/core": "^4.10.2",
@@ -37,11 +38,12 @@
     "@babel/cli": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@neutrinojs/airbnb": "^9.2.0",
+    "@neutrinojs/eslint": "^9.2.0",
     "@neutrinojs/jest": "^9.2.0",
     "@neutrinojs/react": "^9.2.0",
     "babel-plugin-lodash": "^3.3.4",
     "eslint": "^7.3.1",
-    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^23.17.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",

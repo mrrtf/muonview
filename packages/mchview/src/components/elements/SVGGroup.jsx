@@ -8,7 +8,7 @@ const SVGGroup = ({ groupname, style, children }) => (
 );
 SVGGroup.propTypes = {
   groupname: PropTypes.string.isRequired,
-  style: PropTypes.string,
+  style: PropTypes.object,
   children: PropTypes.any,
 };
 

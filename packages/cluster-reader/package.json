@@ -3,25 +3,38 @@
   "version": "1.0.0",
   "main": "build/index.js",
   "license": "MIT",
-  "module": "src/index.js",
-  "type":"module",
   "scripts": {
     "start": "webpack --watch --mode development",
     "build": "webpack --mode production",
     "test": "jest",
-    "lint": "eslint --cache --format codeframe --ext mjs,js src test"
+    "lint": "eslint --cache --format codeframe --ext mjs,js src test",
+    "lint:fix": "npm run lint -- --fix",
+    "coverage": "jest --collectionCoverageFrom=src/**.js --coverage src"
+  },
+  "bin": {
+    "digit-reader": "bin/digit-reader"
   },
   "devDependencies": {
     "@neutrinojs/airbnb-base": "^9.2.0",
+    "@neutrinojs/eslint": "^9.2.0",
+    "@neutrinojs/jest": "^9.2.0",
     "@neutrinojs/node": "^9.2.0",
+    "eslint": "^7.3.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.17.1",
     "jest": "^26.1.0",
     "neutrino": "^9.2.0",
     "nodemon-webpack-plugin": "^4.3.2",
+    "prettier": "^2.0.5",
+    "prettier-eslint": "^11.0.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "yargs": "^15.3.1"
+    "commander": "^5.1.0",
+    "esm": "^3.2.25",
+    "expect": "^26.1.0",
+    "express": "^4.17.1"
   }
 }

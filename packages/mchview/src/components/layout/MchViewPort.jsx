@@ -1,8 +1,9 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import {
   Route, Switch, Redirect, useLocation,
 } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const DePlaneView = lazy(() => import('../views/DePlaneView'));
 const AllView = lazy(() => import('../views/AllView'));
@@ -52,21 +53,23 @@ const MchViewPort = () => {
   }
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <Redirect to="/deplane?deid=500&bending=false" />}
-        />
-        <Route path="/deplane" render={() => <DePlaneView id={id} />} />
-        <Route exact path="/de" render={() => <DeView id={id} />} />
-        <Route exact path="/all/:a/:b" component={AllView} />
-        <Route exact path="/debug" render={() => <DebugView />} />
-        <Route exact path="/debug2" render={() => <DebugView id={id} />} />
-        <Route component={NotFound} />
-      </Switch>
-    </div>
+    <Suspense fallback={<CircularProgress />}>
+      <div className={classes.root}>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/deplane?deid=500&bending=false" />}
+          />
+          <Route path="/deplane" render={() => <DePlaneView id={id} />} />
+          <Route exact path="/de" render={() => <DeView id={id} />} />
+          <Route exact path="/all/:a/:b" component={AllView} />
+          <Route exact path="/debug" render={() => <DebugView />} />
+          <Route exact path="/debug2" render={() => <DebugView id={id} />} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </Suspense>
   );
 };
 
