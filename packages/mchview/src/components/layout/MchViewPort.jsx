@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import {
   Route, Switch, Redirect, useLocation,
 } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import DeView from '../views/DeView';
-import DePlaneView from '../views/DePlaneView';
-import AllView from '../views/AllView';
-import DebugView from '../views/DebugView';
+
+const DePlaneView = lazy(() => import('../views/DePlaneView'));
+const AllView = lazy(() => import('../views/AllView'));
+const DebugView = lazy(() => import('../views/DebugView'));
+const DeView = lazy(() => import('../views/DeView'));
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +27,7 @@ const MchViewPort = () => {
 
   const asInt = (name) => {
     const parsed = parseInt(searchParams.get(name), 10);
-    if (isNaN(parsed)) {
+    if (Math.isNaN(parsed)) {
       return null;
     }
     return parsed;

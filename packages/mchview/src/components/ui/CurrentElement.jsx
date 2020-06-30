@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectors } from '../../reducers';
-import { describe, isValid } from '../../categories';
+import { describeId, isValid } from '../../categories';
 
 export const PureCurrentElement = ({ id, value }) => {
   if (!id) {
@@ -16,7 +16,7 @@ export const PureCurrentElement = ({ id, value }) => {
     <div>
       <ul>
         <li>
-          {describe(id)}
+          {describeId(id)}
           {isValid(id) ? '' : <span>[ Invalid ID ]</span>}
         </li>
         {value ? (

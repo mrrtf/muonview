@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import LineWeight from '@material-ui/icons/LineWeight';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   root: {
@@ -98,4 +99,8 @@ const OutlineStyleSelector = ({ value, onChange }) => {
   );
 };
 
+OutlineStyleSelector.propTypes = {
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 export default OutlineStyleSelector;

@@ -7,7 +7,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { isValidDeId, listOfValidDeIds } from '../../categories';
+import { isValidDeId } from '../../categories';
+import listOfValidDeIds from '../../listOfValidDeIds';
 
 const useStyles = makeStyles({
   root: {
@@ -25,10 +26,10 @@ const stationId = (x) => {
 
 const DePlaneSelector = ({ id, setId }) => {
   const { deid, bending } = id;
+  const classes = useStyles();
   if (!isValidDeId(deid)) {
     return 'Invalid DE';
   }
-  const classes = useStyles();
   return (
     <Box display="flex">
       <Autocomplete

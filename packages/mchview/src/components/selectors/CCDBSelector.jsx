@@ -1,5 +1,8 @@
+/* eslint jsx-a11y/label-has-associated-control: ["off"] */
+
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CloseButton from '../ui/CloseButton';
 import FetchButton from '../ui/FetchButton';
 import { actions as visibilityActions } from '../../ducks/visibility';
@@ -7,7 +10,6 @@ import { selectors } from '../../reducers';
 
 const fetchOccupancy = (deid, timestamp = 0, url = '') => {
   const qurl = `${url}/occupancymap?deid=${deid}&run=${timestamp}`;
-  console.log('Requested to fetch from url=', qurl);
   return fetch(qurl).then((response) => response.json());
 };
 
@@ -26,6 +28,7 @@ const CCDBSelector = ({ deid, title, hideModal }) => {
         <input
           ref={timestamp}
           id="timestamp"
+          type="text"
           pattern="[0-9]{6}"
           required="required"
           size="6"
@@ -40,11 +43,7 @@ const CCDBSelector = ({ deid, title, hideModal }) => {
         />
       </fieldset>
       <FetchButton
-        fetcher={() => fetchOccupancy(
-          deid,
-          timestamp.current.value,
-          url.current.value,
-        )}
+        fetcher={() => fetchOccupancy(deid, timestamp.current.value, url.current.value)}
         finalizer={hideModal}
       />
     </main>
@@ -58,4 +57,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   hideModal: () => dispatch(visibilityActions.hideModal()),
 });
+
+CCDBSelector.propTypes = {
+  deid: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  hideModal: PropTypes.bool,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CCDBSelector);

@@ -14,10 +14,8 @@ const Cluster = ({
     strokeWidth: 0.2,
   },
 }) => {
-  const poly = [];
-
   let deid = null;
-  Object.keys(cluster.pads).map((x) => {
+  const poly = Object.keys(cluster.pads).map((x) => {
     const id = decode(x);
     const { dsid } = id;
     deid = id.deid;
@@ -25,23 +23,24 @@ const Cluster = ({
       (bending === true && dsid < 1024)
       || (bending === false && dsid >= 1024)
     ) {
-      poly.push(<Pad key={x} id={id} vertices={cluster.pads[x].vertices} />);
+      return <Pad key={x} id={id} vertices={cluster.pads[x].vertices} />;
     }
+    return null;
   });
 
   const m = contour.cluster2contour(cluster);
   const precluster = [];
   let i = 0;
-  m.map((x) => {
-    i++;
-    x.map((y) => {
+  m.forEach((x) => {
+    i += 1;
+    x.forEach((y) => {
       const vertices = y.map((z) => ({ x: z[0], y: z[1] }));
-      const poly = {
+      const pad = {
         id: { deid, clusterid: i },
         vertices,
         value: 0,
       };
-      precluster.push(<Polygon key={i} poly={poly} />);
+      precluster.push(<Polygon key={i} poly={pad} />);
     });
   });
 
@@ -67,6 +66,7 @@ const Cluster = ({
 Cluster.propTypes = {
   cluster: PropTypes.object,
   outlineStyle: PropTypes.object,
+  bending: PropTypes.bool,
 };
 
 export default Cluster;

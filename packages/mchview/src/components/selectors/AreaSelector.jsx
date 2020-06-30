@@ -16,6 +16,12 @@ const ValueSelector = ({ name, value, setValue }) => {
   );
 };
 
+ValueSelector.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  setValue: PropTypes.func.isRequired,
+};
+
 const AreaSelector = ({
   area, setXmin, setXmax, setYmin, setYmax,
 }) => (
@@ -32,8 +38,14 @@ const AreaSelector = ({
 AreaSelector.propTypes = {
   area: PropTypes.shape({
     xmin: PropTypes.string.isRequired,
+    ymin: PropTypes.string.isRequired,
+    xmax: PropTypes.string.isRequired,
+    ymax: PropTypes.string.isRequired,
   }).isRequired,
   setXmin: PropTypes.func.isRequired,
+  setYmin: PropTypes.func.isRequired,
+  setXmax: PropTypes.func.isRequired,
+  setYmax: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
