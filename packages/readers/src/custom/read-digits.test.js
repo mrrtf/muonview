@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as readfile from './readfile';
+import * as readfile from './read-digits';
 
 describe('digitVectorFitInBuffer', () => {
   it('digit vector should not fit in empty buffer', () => {

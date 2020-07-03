@@ -4,9 +4,7 @@
 
 const fs = require('fs');
 const assert = require('assert');
-const program = require('commander');
-const aliceo2 = require('./aliceo2');
-const mch = require('./mch');
+const mch = require('../mch');
 
 const getDigitVectorSize = (chunk) => {
   if (!chunk) return 0;
@@ -74,43 +72,6 @@ const readBinaryDigits = (filename, digitHandler = defaultDigitHandler) => new P
   stream.on('error', reject);
 });
 
-const readDPLDigits = (filename) => {
-  const readOptions = {
-    highWaterMark: 640 * 1024,
-  };
-  const readable = fs.createReadStream(filename, readOptions);
-
-  const maxsize = 0;
-  let bytesRead = 0;
-  readable.on('data', (chunk) => {
-    let posInChunk = 0;
-    bytesRead += chunk.length;
-    const h = aliceo2.getHeader(chunk.slice(posInChunk));
-    posInChunk += h.headerSize;
-    console.log('h=', h);
-    const h2 = aliceo2.getHeader(chunk.slice(posInChunk));
-    console.log('h2=', h2);
-    posInChunk += h2.headerSize;
-    console.log('posInChunk=', posInChunk);
-    const h3 = aliceo2.getHeader(chunk.slice(posInChunk));
-    if (h3 !== null) {
-      throw new Error('got unexpected header');
-    }
-    console.log('h3=', h3);
-    // here should limit the chunk slice to the size of the o2 message
-    mch.readDigitBuffer(chunk.slice(posInChunk), (digit) => {
-      console.log(digit);
-    });
-    if (bytesRead > maxsize) {
-      process.exit(1);
-    }
-  });
-
-  readable.on('end', () => {
-    console.log('this is the end my friend');
-  });
-};
-
 const readDigits = (filename) => {
   let ndigits = 0;
 
@@ -124,20 +85,4 @@ const readDigits = (filename) => {
   });
 };
 
-const cli = (args) => {
-  program
-    .command('digits <digitfile>')
-    .description('read digit file')
-    .option('-d, --dpl', 'dpl input')
-    .action((digitfile, options) => {
-      console.log(digitfile, options.dpl);
-      if (options.dpl) {
-        readDPLDigits(digitfile);
-      } else {
-        readDigits(digitfile);
-      }
-    });
-  program.parse(args);
-};
-
-module.exports = cli;
+module.exports = readDigits;

@@ -1,5 +1,5 @@
 {
-  "name": "cluster-reader",
+  "name": "readers",
   "version": "1.0.0",
   "main": "build/index.js",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "coverage": "jest --collectionCoverageFrom=src/**.js --coverage src"
   },
   "bin": {
-    "digit-reader": "bin/digit-reader"
+    "muonview-read": "bin/muonview-read.js"
   },
   "devDependencies": {
     "@neutrinojs/airbnb-base": "^9.2.0",

@@ -3,7 +3,7 @@ importers:
     specifiers: {}
   ../../../.asdf/installs/nodejs/12.18.1/.npm/pnpm-global:
     specifiers: {}
-  packages/cluster-reader:
+  packages/readers:
     dependencies:
       commander: 5.1.0
       esm: 3.2.25
