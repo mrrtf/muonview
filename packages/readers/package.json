@@ -32,6 +32,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "0x": "^4.9.1",
     "commander": "^5.1.0",
     "esm": "^3.2.25",
     "expect": "^26.1.0",

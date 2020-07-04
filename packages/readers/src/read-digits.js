@@ -11,7 +11,7 @@ const readDigits = (filename, type) => {
 
   const digitHandler = (digit) => {
     ndigits += 1;
-    if (ndigits % 10000 === 0) {
+    if (ndigits % 100000 === 0) {
       console.log('ndigits=', ndigits);
       console.log(digit);
     }
@@ -39,9 +39,10 @@ const readDigits = (filename, type) => {
     highWaterMark: chunkSize,
   });
 
-  helper.readBufferized(stream, bufferParser, bufferHandler).then((nbytes) => {
+  helper.readBufferized(stream, bufferParser, bufferHandler).then((result) => {
     console.log('total digits', ndigits);
-    console.log('total bytes read', nbytes);
+    console.log('total bytes read', result.nofBytes);
+    console.log('total messages', result.nofCompleteBuffers);
   });
 };
 
