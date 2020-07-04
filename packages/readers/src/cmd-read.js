@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 
 const program = require('commander');
-const custom = require('./custom/read-digits');
-const dpl = require('./dpl/read-digits');
+const readDigits = require('./read-digits');
 
 const cli = (args) => {
   program
@@ -11,11 +10,7 @@ const cli = (args) => {
     .option('-d, --dpl', 'dpl input')
     .action((digitfile, options) => {
       console.log(digitfile, options.dpl);
-      if (options.dpl) {
-        dpl(digitfile);
-      } else {
-        custom(digitfile);
-      }
+      readDigits(digitfile, options.dpl ? 'dplsink' : 'mchbin');
     });
   program.parse(args);
 };

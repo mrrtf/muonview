@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('../src/readfile.js')(process.argv);
+require('../src/cmd-read.js')(process.argv);
