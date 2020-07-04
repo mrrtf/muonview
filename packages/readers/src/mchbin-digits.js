@@ -5,7 +5,7 @@ const bufferParser = (buffer) => {
   return {
     buffer: size ? buffer.slice(headerSize, size) : buffer,
     truncated: size >= buffer.length || size === 0,
-    size,
+    headerSize,
   };
 };
 

@@ -5,19 +5,30 @@ const readBufferized = (stream, bufferParser, bufferHandler) => new Promise((res
 
   let nofBytes = 0;
 
-  let nofCompleteBuffers = 0;
+  const indexList = [];
+
+  let absolutePos = 0;
 
   stream.on('data', (chunk) => {
-    nofBytes += chunk.length;
     buffer = buffer ? Buffer.concat([buffer, chunk]) : chunk;
+    nofBytes += chunk.length;
 
     let usablePart = bufferParser(buffer);
 
     let pos = 0;
     while (usablePart && !usablePart.truncated) {
-      nofCompleteBuffers += 1;
-      bufferHandler(usablePart.buffer);
-      pos += usablePart.size;
+      if (bufferHandler) {
+        bufferHandler(usablePart.buffer);
+      }
+      const start = absolutePos + usablePart.headerSize;
+      const end = start + usablePart.buffer.length;
+      indexList.push({
+        start,
+        end,
+      });
+      const shift = usablePart.headerSize + usablePart.buffer.length;
+      pos += shift;
+      absolutePos += shift;
       usablePart = bufferParser(buffer.slice(pos));
     }
 
@@ -36,7 +47,7 @@ const readBufferized = (stream, bufferParser, bufferHandler) => new Promise((res
     }
   });
   stream.on('end', () => {
-    resolve({ nofBytes, nofCompleteBuffers });
+    resolve({ indexList, nofBytes });
   });
   stream.on('error', reject);
 });
