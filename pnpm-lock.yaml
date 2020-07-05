@@ -107,6 +107,7 @@ importers:
       expect: 26.1.0
       express: 4.17.1
       listr: 0.14.3_listr@0.14.3
+      lodash: 4.17.15
       nodemon: 2.0.4
     devDependencies:
       0x: 4.9.1
@@ -143,6 +144,7 @@ importers:
       express: ^4.17.1
       jest: ^26.1.0
       listr: ^0.14.3
+      lodash: ^4.17.15
       neutrino: ^9.2.0
       nodemon: ^2.0.4
       nodemon-webpack-plugin: ^4.3.2

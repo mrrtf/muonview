@@ -1,11 +1,11 @@
 const assert = require('assert');
 
 const getDigit = (buffer) => ({
-  digitTime: buffer.readBigUInt64LE(0),
+  digitTime: Number(buffer.readBigUInt64LE(0)),
   nofSamples: buffer.readUInt16LE(8),
   deid: buffer.readUInt32LE(12),
   padid: buffer.readUInt32LE(16),
-  adc: buffer.readBigUInt64LE(24),
+  adc: Number(buffer.readBigUInt64LE(24)),
 });
 
 const DIGIT_SIZE = 32;

@@ -1,5 +1,24 @@
+/* eslint-disable no-console */
+
+const fs = require('fs');
 const assert = require('assert');
 
+const mchbin = require('./mchbin-digits');
+const dplsink = require('./dplsink-digits');
+
+const createBufferParser = (type) => {
+  if (type === 'mchbin') {
+    return mchbin;
+  }
+
+  if (type === 'dplsink') {
+    return dplsink;
+  }
+
+  throw new Error(`could not get buffer parser for type=${type}`);
+};
+
+module.exports = createBufferParser;
 const readBufferized = (stream, bufferParser, bufferHandler) => new Promise((resolve, reject) => {
   let buffer = null;
 
@@ -52,4 +71,26 @@ const readBufferized = (stream, bufferParser, bufferHandler) => new Promise((res
   stream.on('error', reject);
 });
 
-module.exports = { readBufferized };
+const scanFile = (
+  filename,
+  type,
+  bufferHandler,
+  options = { highWaterMark: 64 * 1024 },
+) => {
+  const bufferParser = createBufferParser(type);
+
+  const stream = fs.createReadStream(filename, {
+    ...options,
+  });
+
+  return readBufferized(stream, bufferParser, bufferHandler);
+};
+
+const indexFile = (filename, type) => scanFile(filename, type, null);
+
+module.exports = {
+  indexFile,
+  scanFile,
+  readBufferized,
+  createBufferParser,
+};

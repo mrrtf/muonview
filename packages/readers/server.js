@@ -20,7 +20,7 @@ if (isDevelopment) {
   );
 }
 
-app.listen(port, () => process.stdout.write(`starting example app at http://localhost:${port}`));
+app.listen(port, () => process.stdout.write(`starting example app at http://localhost:${port}\n`));
 
 if (module.hot) {
   module.hot.accept('./router-digits');

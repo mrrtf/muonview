@@ -1,12 +1,16 @@
 const express = require('express');
 
 const app = express();
+const omit = require('lodash/omit');
 const digitRouter = require('./router-digits');
+const indexRouter = require('./router-index');
+const { store } = require('./store');
 /*
  * the app should :
- * - index file(s) on startup
- * - serve the index list of (any) file on /index route
- * - serve digits on /digits route
+ * [X] index file(s) on startup
+ * [X] serve the index list of (any) file on /index route
+ * [X] serve digits on /digits route
+ * [ ] serve clusters on /clusters route
  *
  * could we btw imagine also provide the ability to drag and drop a file
  * into mchview and have it display it ? That should be doable by
@@ -14,20 +18,17 @@ const digitRouter = require('./router-digits');
  *
  */
 
-app.use('/digits', digitRouter);
+// console.log('initial store=', store);
 
-const defaultFilename = '/Users/laurent/cernbox/o2muon/dpl-digits.bin';
-const defaultType = 'dplsink';
+app.use('/digits', digitRouter);
+app.use('/index', indexRouter);
 
 app.get('/filelist', (req, res) => {
-  const files = [];
-  files.push({
-    filename: defaultFilename,
-    format: defaultType,
-    kind: 'digits',
-  });
   res.json({
-    availableFiles: files,
+    availableFiles: store.files.map((x) => ({
+      ...omit(x, 'index'),
+      indexSize: x.index ? x.index.length : 0,
+    })),
   });
 });
 

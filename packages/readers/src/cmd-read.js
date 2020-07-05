@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const Listr = require('listr');
-const indexFile = require('./index-file');
+const { indexFile, scanFile } = require('./read-utils');
 const mch = require('./mch');
 
 let ndigits = 0;
@@ -21,7 +21,10 @@ const bufferHandler = (buffer) => {
 
 const indexDigitFile = (digitfile, options) => {
   const type = options.dpl ? 'dplsink' : 'mchbin';
-  return indexFile(digitfile, type, options.indexOnly ? null : bufferHandler);
+  if (options.indexOnly) {
+    return indexFile(digitfile, type);
+  }
+  return scanFile(digitfile, type, bufferHandler);
 };
 
 const cli = (args) => {

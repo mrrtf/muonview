@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const digitRouter = require('./router-digits');
 //

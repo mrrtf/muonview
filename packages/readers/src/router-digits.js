@@ -1,19 +1,29 @@
 const express = require('express');
-const indexFile = require('./index-file');
+const { getFile } = require('./store');
+const readDigits = require('./read-digits');
 
 const router = express.Router();
 
-const defaultFilename = '/Users/laurent/cernbox/o2muon/dpl-digits.bin';
-const defaultType = 'dplsink';
-
 router.get('/', (req, res) => {
-  const filename = req.query.file || defaultFilename;
-  const type = req.query.type || defaultType;
-  indexFile(filename, type).then((result) => {
-    res.json({
-      filename,
-      type,
-      indices: result.indexList,
+  const fileid = Number(req.query.fileid);
+  getFile(fileid).then((file) => {
+    if (!file) {
+      res.send('<h2>not such file</h2>');
+      return;
+    }
+    const indexid = Number(req.query.indexid);
+    if (Number.isNaN(indexid) || indexid >= file.index.length) {
+      res.send('<h2>not such index</h2>');
+      return;
+    }
+    const ix = file.index[indexid];
+
+    readDigits(file.filename, file.format, ix.start, ix.end).then((digits) => {
+      res.json({
+        ix,
+        ndigits: digits.length,
+        digits,
+      });
     });
   });
 });
