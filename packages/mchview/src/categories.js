@@ -37,7 +37,8 @@ export const isValidCategory = (c) => isEqual(c, de)
   || isEqual(c, deplane)
   || isEqual(c, chamber)
   || isEqual(c, cluster)
-  || isEqual(c, area);
+  || isEqual(c, area)
+  || isEqual(c, pad);
 
 export const whatis = (id) => {
   if (id == null) {

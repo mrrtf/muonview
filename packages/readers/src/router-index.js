@@ -8,6 +8,7 @@ const send = (res, file) => {
     filename: file.filename,
     format: file.format,
     index: file.index,
+    elemsize: file.kind === 'digits' ? 32 : null,
   });
 };
 

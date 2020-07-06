@@ -1,3 +1,4 @@
+import digits from '../store/digits.json';
 // action types
 export const types = {
   SET: 'DATA/SET',
@@ -7,6 +8,7 @@ export const types = {
 
 // initial state
 export const initialState = {
+  digits,
   source: 1,
   content: [
     {

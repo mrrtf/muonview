@@ -7,4 +7,6 @@ export default {
   // decorators: [storyFn => <div style={{ padding: "10px" }}>{storyFn()}</div>]
 };
 
-export const Regular = () => <OutlineStyleSelector />;
+export const Regular = () => (
+  <OutlineStyleSelector value={42} onChange={() => {}} />
+);

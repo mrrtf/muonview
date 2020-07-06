@@ -37,13 +37,6 @@ const SVGView = ({
     return null;
   }
 
-  const aspectRatio = (1.0 * geo.sy) / geo.sx;
-
-  const w = '100%';
-  const h = `${aspectRatio * 100}%`;
-  if (Number.isFinite(h)) {
-    return null;
-  }
   const vx = geo.sx;
   const vy = geo.sy;
 
@@ -52,8 +45,8 @@ const SVGView = ({
   return (
     <svg
       ref={svgRef}
-      width={w}
-      height={h}
+      width="97vw"
+      height="97vh"
       viewBox={`0 0 ${vx} ${vy}`}
       onWheel={(event) => {
         if (isPanning()) {
@@ -101,10 +94,9 @@ const SVGView = ({
       }}
     >
       <g transform={transform}>{children}</g>
-      <Target x={0} y={0} color="red" />
-      <Target x={vx / 2} y={vy / 2} color="green" />
-      <Target x={vx} y={vy} color="blue" />
-      {point ? <Target x={point.x} y={point.y} scale={0.5} /> : null}
+      {point ? (
+        <Target x={point.x} y={point.y} scale={0.5} color="yellow" />
+      ) : null}
     </svg>
   );
 };
