@@ -3,7 +3,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import CardHeader from '@material-ui/core/CardHeader';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -53,11 +52,6 @@ const DataSourceSlider = ({
   }
   return (
     <Card className={classes.root}>
-      <CardHeader
-        className={classes.root}
-        title={name}
-        subheader={description}
-      />
       <CardContent>
         <Typography gutterBottom id="event-slider">
           Event
@@ -92,9 +86,23 @@ const DataSourceSlider = ({
         </Grid>
       </CardContent>
       <CardActions className={classes.root}>
-        <Button onClick={onClick} variant={button.style} color="primary">
-          {button.text}
-        </Button>
+        <Grid container spacing={0}>
+          <Grid item xs={9}>
+            <Grid container direction="column">
+              <Grid item>
+                <Typography variant="subtitle1">{name}</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="subtitle2">{description}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={3}>
+            <Button onClick={onClick} variant={button.style} color="primary">
+              {button.text}
+            </Button>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );

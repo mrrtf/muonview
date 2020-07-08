@@ -1,40 +1,42 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectors } from '../../reducers';
+import Typography from '@material-ui/core/Typography';
 import { describeId, isValid } from '../../categories';
 
-export const PureCurrentElement = ({ id, value }) => {
-  if (!id) {
+const CurrentElement = ({ element }) => {
+  console.log('element=', element);
+  if (!element) {
     return (
-      <div>
-        <p>No current element under the (mouse) cursor.</p>
-      </div>
+      <Typography>No current element under the (mouse) cursor.</Typography>
     );
   }
+  const { id, value } = element;
   return (
     <div>
       <ul>
         <li>
-          {describeId(id)}
-          {isValid(id) ? '' : <span>[ Invalid ID ]</span>}
+          <Typography>
+            {describeId(id)}
+            {isValid(id) ? '' : <span>[ Invalid ID ]</span>}
+          </Typography>
         </li>
         {value ? (
           <li>
-            <span>Value</span>
-            {value}
+            <Typography>
+              <span>Value</span>
+              {value}
+            </Typography>
           </li>
         ) : null}
       </ul>
     </div>
   );
 };
-PureCurrentElement.propTypes = {
-  id: PropTypes.object,
-  value: PropTypes.number,
+CurrentElement.propTypes = {
+  element: PropTypes.shape({
+    id: PropTypes.object,
+    value: PropTypes.number,
+  }),
 };
 
-export default connect((state) => {
-  const ce = selectors.currentElement(state);
-  return ce || {};
-})(PureCurrentElement);
+export default CurrentElement;

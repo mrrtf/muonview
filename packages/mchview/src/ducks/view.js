@@ -27,9 +27,11 @@ export default (state = initialState, action) => {
 export const actions = {
   setCurrentElement: (element) => ({
     type: types.SET_CURRENT_ELEMENT,
-    payload: {
-      ...element,
-    },
+    payload: element
+      ? {
+        ...element,
+      }
+      : null,
   }),
 };
 

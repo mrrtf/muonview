@@ -1,21 +1,25 @@
 import React from 'react';
+import CurrentElement from './CurrentElement';
 
-import { storiesOf } from '@storybook/react';
-// import { action } from "@storybook/addon-actions";
+export default {
+  component: CurrentElement,
+  title: 'Status/CurrentElement',
+};
 
-import { PureCurrentElement } from './CurrentElement';
+export const InvalidDe = () => <CurrentElement id={{ deid: null }} />;
 
-storiesOf('CurrentElement', module)
-  .addDecorator((story) => <div style={{ padding: '10px' }}>{story()}</div>)
-  .add('de (invalid)', () => <PureCurrentElement id={{ deid: null }} />)
-  .add('de', () => <PureCurrentElement id={{ deid: 501 }} />)
-  .add('de (with data)', () => (
-    <PureCurrentElement id={{ deid: 501 }} value={1234.42} />
-  ))
-  .add('deplane', () => (
-    <PureCurrentElement id={{ deid: 501, bending: true }} />
-  ))
-  .add('ds', () => (
-    <PureCurrentElement id={{ deid: null, bending: null, dsid: null }} />
-  ))
-  .add('nothing', () => <PureCurrentElement />);
+export const De = () => <CurrentElement id={{ deid: 501 }} />;
+
+export const DeWithData = () => (
+  <CurrentElement id={{ deid: 501 }} value={1234.42} />
+);
+
+export const DePlane = () => (
+  <CurrentElement id={{ deid: 501, bending: true }} />
+);
+
+export const DualSampa = () => (
+  <CurrentElement id={{ deid: null, bending: null, dsid: null }} />
+);
+
+export const Nothing = () => <CurrentElement />;
