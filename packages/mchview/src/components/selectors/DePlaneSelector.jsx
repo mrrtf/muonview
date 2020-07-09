@@ -56,7 +56,7 @@ const DePlaneSelector = ({ id, setId }) => {
           />
         )}
         label="bending"
-        labelPlacement="start"
+        labelPlacement="end"
       />
     </Box>
   );

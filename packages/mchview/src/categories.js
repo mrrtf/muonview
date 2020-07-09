@@ -3,42 +3,92 @@ import { isEmpty, isEqual } from 'lodash';
 import listOfValidDeIds from './listOfValidDeIds';
 
 // constants
-const chamber = { name: 'Chamber', key: 'chamber' };
 
+const mch = {
+  name: 'Muon Tracker',
+  key: 'mch',
+  depth: 0,
+};
+const station = {
+  name: 'Station',
+  key: 'station',
+  depth: 1,
+};
+const chamber = {
+  name: 'Chamber',
+  key: 'chamber',
+  depth: 2,
+};
 const de = {
   name: 'Detection Element',
   key: 'de',
+  depth: 3,
 };
 const deplane = {
   name: 'Plane',
   key: 'deplane',
+  depth: 4,
 };
 const ds = {
   name: 'Dual Sampa',
   key: 'ds',
+  depth: 4,
 };
 const pad = {
   name: 'Pad',
   key: 'pad',
+  depth: 5,
 };
 const cluster = {
   name: 'Cluster',
   key: 'cluster',
+  depth: 4,
 };
 const area = {
   name: 'Area',
   key: 'area',
+  depth: 4,
 };
 
 export const hasBending = (id) => id.bending != null && Object.prototype.hasOwnProperty.call(id, 'bending');
 
-export const isValidCategory = (c) => isEqual(c, de)
+export const isValidCategory = (c) => isEqual(c, mch)
+  || isEqual(c, station)
+  || isEqual(c, de)
   || isEqual(c, ds)
-  || isEqual(c, deplane)
   || isEqual(c, chamber)
+  || isEqual(c, deplane)
   || isEqual(c, cluster)
   || isEqual(c, area)
   || isEqual(c, pad);
+
+// convert id to destination
+export const convertId = (id, dest) => {
+  if (whatis(id) === dest) {
+    return id;
+  }
+  if (id.depth > dest.id) {
+    return parent(id);
+  }
+  if (whatis(id) === deplane) {
+    switch (dest) {
+      case ds:
+        return { deid: id.deid, bending: id.bending, dsid: null };
+      case pad:
+        return { deid: id.deid, padid: null };
+      case cluster:
+        return null;
+      default:
+        throw new Error(
+          "don't know (yet) how to convert from",
+          JSON.stringify(id),
+          'to',
+          JSON.stringify(dest),
+        );
+    }
+  }
+  throw new Error("don't know (yet) how to convert from", JSON.stringify(id));
+};
 
 export const whatis = (id) => {
   if (id == null) {

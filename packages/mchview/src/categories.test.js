@@ -12,6 +12,29 @@ describe('isValidCategory', () => {
   });
 });
 
+describe('convertId', () => {
+  it('convert anything to same should be identity', () => {
+    let id = { deid: null };
+    expect(categories.convertId(id, categories.de)).toBe(id);
+    id = { deid: null, bending: null };
+    expect(categories.convertId(id, categories.deplane)).toBe(id);
+    id = { deid: null, dsid: null };
+    expect(categories.convertId(id, categories.ds)).toBe(id);
+  });
+  it('convert from de', () => {
+    expect(categories.convertId({ deid: 102 }, categories.ds)).toStrictEqual({
+      deid: 102,
+      dsid: null,
+    });
+    expect(
+      categories.convertId({ deid: 102 }, categories.deplane),
+    ).toStrictEqual({
+      deid: 102,
+      bending: null,
+    });
+  });
+});
+
 describe('whatis', () => {
   it('deid should be de', () => {
     expect(categories.whatis({ deid: null })).toBe(categories.de);
@@ -40,7 +63,10 @@ describe('whatis', () => {
   it('deid:null, bending:null, dsid:null, dsch: null should be pad', () => {
     expect(
       categories.whatis({
-        deid: null, bending: null, dsid: null, dsch: null,
+        deid: null,
+        bending: null,
+        dsid: null,
+        dsch: null,
       }),
     ).toBe(categories.pad);
   });
@@ -151,7 +177,9 @@ describe('nameAll', () => {
 
 describe('describe', () => {
   it('deid:null should be All Detection Elements', () => {
-    expect(categories.describeId({ deid: null })).toBe('All Detection Elements');
+    expect(categories.describeId({ deid: null })).toBe(
+      'All Detection Elements',
+    );
   });
   it('deid:501 should be Detection Element 501', () => {
     expect(categories.describeId({ deid: 501 })).toBe('Detection Element 501');
@@ -172,9 +200,9 @@ describe('describe', () => {
     );
   });
   it('deid:null,bending:null,dsid:null should be All Dual Sampas', () => {
-    expect(categories.describeId({ deid: null, bending: null, dsid: null })).toBe(
-      'All Dual Sampas',
-    );
+    expect(
+      categories.describeId({ deid: null, bending: null, dsid: null }),
+    ).toBe('All Dual Sampas');
   });
   it('deid:501,dsid:null should be Detection Element 501 all ds', () => {
     expect(categories.describeId({ deid: 501, dsid: null })).toBe(

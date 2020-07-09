@@ -6,7 +6,10 @@ import SVGGroup from './SVGGroup';
 import Polygon from './Polygon';
 import { encode } from '../../categories';
 
-const DePlane = ({ deplane, outlineStyle }) => {
+const DePlane = ({ geo, outlineStyle }) => {
+  if (!geo) {
+    return null;
+  }
   const color = scaleSequential()
     .domain([100, 1025])
     .interpolator(interpolateViridis);
@@ -14,9 +17,9 @@ const DePlane = ({ deplane, outlineStyle }) => {
   return (
     <SVGGroup groupname="deplane" style={outlineStyle}>
       <Polygon
-        key={encode(deplane.id)}
+        key={encode(geo.id)}
         prefix="DE"
-        poly={deplane}
+        poly={geo}
         fillColor={color(101)}
       />
     </SVGGroup>
@@ -24,7 +27,7 @@ const DePlane = ({ deplane, outlineStyle }) => {
 };
 
 DePlane.propTypes = {
-  deplane: PropTypes.object,
+  geo: PropTypes.object,
   outlineStyle: PropTypes.object,
 };
 

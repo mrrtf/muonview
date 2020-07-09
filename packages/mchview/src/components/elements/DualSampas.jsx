@@ -11,13 +11,13 @@ const colorDS = scaleSequential()
   .domain([0, 1500])
   .interpolator(interpolateViridis);
 
-const DualSampas = ({ ds, outlineStyle }) => {
-  if (ds === undefined) {
+const DualSampas = ({ geo, outlineStyle }) => {
+  if (geo === undefined) {
     return null;
   }
   const dspoly = [];
-  Object.keys(ds).forEach((key) => {
-    const single = ds[key];
+  Object.keys(geo).forEach((key) => {
+    const single = geo[key];
     dspoly.push(
       <Polygon
         classname="ds"
@@ -36,7 +36,7 @@ const DualSampas = ({ ds, outlineStyle }) => {
 };
 
 DualSampas.propTypes = {
-  ds: PropTypes.object,
+  geo: PropTypes.object,
   outlineStyle: PropTypes.object,
 };
 

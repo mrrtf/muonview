@@ -1,5 +1,6 @@
 import React from 'react';
-import Cluster from '../elements/Cluster';
+import PropTypes from 'prop-types';
+import Cluster from './Cluster';
 
 import pads from '../../store/cluster.json';
 
@@ -13,5 +14,8 @@ const ClusterLayer = ({ clusters = defaultClusters }) => (
     <Cluster bending={false} cluster={clusters} />
   </>
 );
+ClusterLayer.propTypes = {
+  clusters: PropTypes.array,
+};
 
 export default ClusterLayer;

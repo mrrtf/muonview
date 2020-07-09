@@ -34,6 +34,7 @@ const Rect = ({
 );
 
 const mappingServer = () => 'http://localhost:8080/v2';
+const TestComp = () => <h1>This is TestComp</h1>;
 
 const DebugView = () => {
   const w = DEFAULT_WIDTH;
@@ -52,9 +53,12 @@ const DebugView = () => {
       },
     },
   });
+
+  const myComp = React.createElement(TestComp);
   return (
     <>
       <p>DebugView</p>
+      {myComp}
       <div>
         <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
           <g transform="" />
@@ -62,9 +66,9 @@ const DebugView = () => {
           <Rect color="red" transform={`translate(${w / 2}) scale(${scale})`} />
           <Rect
             color="green"
-            transform={`scale(${scale}) translate(${w / 2 / scale} ${h
-              / 2
-              / scale})`}
+            transform={`scale(${scale}) translate(${w / 2 / scale} ${
+              h / 2 / scale
+            })`}
           />
           <Rect
             color="yellow"

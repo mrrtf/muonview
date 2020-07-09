@@ -4,10 +4,17 @@ import Typography from '@material-ui/core/Typography';
 import { describeId, isValid } from '../../categories';
 
 const CurrentElement = ({ element }) => {
-  console.log('element=', element);
   if (!element) {
     return (
-      <Typography>No current element under the (mouse) cursor.</Typography>
+      <div>
+        <ul>
+          <li>
+            <Typography>
+              No current element under the (mouse) cursor.
+            </Typography>
+          </li>
+        </ul>
+      </div>
     );
   }
   const { id, value } = element;

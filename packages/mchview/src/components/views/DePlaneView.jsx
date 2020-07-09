@@ -1,19 +1,26 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
+
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import produce from 'immer';
+import index from './index.json';
 import * as categories from '../../categories';
 import DePlaneSelector from '../selectors/DePlaneSelector';
 import VisibilitySelectorBar from '../selectors/VisibilitySelectorBar';
 import SVGHighlighter from '../ui/SVGHighlighter';
 import SVGView from './SVGView';
 import useEnvelop from '../../hooks/useEnvelop';
-import DePlaneLayer from './DePlaneLayer';
-import { describeId } from '../../categories';
+import createLayer from '../elements/LayerCreator';
+import DataSourceSlider from '../selectors/DataSourceSlider';
+
+const getItems = (sample) => sample.index.map((x) => ({
+  isLoaded: false,
+  size: (x.end - x.start) / sample.elemsize,
+}));
 
 const useStyles = makeStyles({
   root: {
@@ -21,15 +28,15 @@ const useStyles = makeStyles({
     position: 'fixed',
     top: '0',
     paddingTop: '7px',
-    width: '100%',
+    width: '98%',
   },
   main: { 'margin-top': '70px' },
 });
 
 const defaultOutlineStyles = {
   [categories.deplane.name]: {
-    stroke: 'pink',
-    strokeWidth: 0.35,
+    stroke: 'green',
+    strokeWidth: 0.65,
   },
 
   [categories.ds.name]: {
@@ -38,20 +45,11 @@ const defaultOutlineStyles = {
   },
 };
 
-const createLayer = (layer, id) => {
-  const outlineStyle = defaultOutlineStyles[layer.name];
-  switch (layer) {
-    case categories.deplane:
-      return (
-        <DePlaneLayer
-          key={describeId(id)}
-          id={id}
-          outlineStyle={outlineStyle}
-        />
-      );
-    default:
-      return null;
-  }
+const defaultVisibility = {
+  [categories.deplane.name]: true,
+  [categories.ds.name]: false,
+  [categories.cluster.name]: false,
+  [categories.pad.name]: false,
 };
 
 const DePlaneView = ({
@@ -63,26 +61,20 @@ const DePlaneView = ({
     categories.pad,
   ],
 }) => {
-  const layerStack = layers.map((layer) => createLayer(layer, id));
-
   const history = useHistory();
 
   // base layer is special : we must have its geometry to be able
   // to set the SVG stage
   const { isLoading, geo } = useEnvelop(id);
 
-  const [isVisible, setIsVisible] = useState({});
-
-  useEffect(() => {
-    console.log('useEffect');
-    const initialState = layers.reduce((acc, cur) => {
-      acc[cur.name] = false;
-      return acc;
-    }, {});
-    setIsVisible(initialState);
-  }, []);
+  const [isVisible, setIsVisible] = useState(defaultVisibility);
 
   const classes = useStyles();
+
+  const layerStack = layers.map((layer) => (isVisible[layer.name]
+    ? createLayer(layer, id, defaultOutlineStyles[layer.name])
+    : null));
+
   const onVisibilityChange = (name, newValue) => setIsVisible(
     produce((draft) => {
       draft[name] = newValue;
@@ -96,7 +88,6 @@ const DePlaneView = ({
   const xoff = geo ? -(geo.x - geo.sx / 2.0) : 0;
   const yoff = geo ? -(geo.y - geo.sy / 2.0) : 0;
 
-  console.log('layers=', layers);
   return (
     <div className={classes.main}>
       <Box className={classes.root} display="flex">
@@ -114,6 +105,12 @@ const DePlaneView = ({
           }}
         />
       </Box>
+      <DataSourceSlider
+        name="/Users/laurent/cernbox/o2muon/dpl-digits.bin"
+        items={getItems(index)}
+        description="dplsink"
+        kind="digits"
+      />
       <main>
         <SVGView
           geo={geo}
@@ -123,7 +120,7 @@ const DePlaneView = ({
           {layerStack}
           <SVGHighlighter id={id} color="red" />
         </SVGView>
-        {geo ? null : <h1>something is wrong</h1>}
+        <div>{geo ? null : <h1>something is wrong</h1>}</div>
       </main>
     </div>
   );
