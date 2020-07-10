@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import produce from 'immer';
@@ -16,6 +17,8 @@ import SVGView from './SVGView';
 import useEnvelop from '../../hooks/useEnvelop';
 import createLayer from '../elements/LayerCreator';
 import DataSourceSlider from '../selectors/DataSourceSlider';
+import { actions } from '../../ducks/data';
+import multidispatch from '../../actionHelper';
 
 const getItems = (sample) => sample.index.map((x) => ({
   isLoaded: false,
@@ -71,6 +74,8 @@ const DePlaneView = ({
 
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
   const layerStack = layers.map((layer) => (isVisible[layer.name]
     ? createLayer(layer, id, defaultOutlineStyles[layer.name])
     : null));
@@ -87,6 +92,12 @@ const DePlaneView = ({
 
   const xoff = geo ? -(geo.x - geo.sx / 2.0) : 0;
   const yoff = geo ? -(geo.y - geo.sy / 2.0) : 0;
+
+  const dataSource = {
+    url: 'http://localhost:3000',
+    name: '/Users/laurent/cernbox/o2muon/dpl-digits.bin',
+    sha256: '33106022e64a712ec3b5eb8becb7e81c8c0a3196',
+  };
 
   return (
     <div className={classes.main}>
@@ -106,10 +117,14 @@ const DePlaneView = ({
         />
       </Box>
       <DataSourceSlider
-        name="/Users/laurent/cernbox/o2muon/dpl-digits.bin"
+        name={dataSource.name}
         items={getItems(index)}
         description="dplsink"
         kind="digits"
+        onClick={(ix) => multidispatch(
+          dispatch,
+          actions.fetchDigits(dataSource.url, dataSource.sha256, ix),
+        )}
       />
       <main>
         <SVGView

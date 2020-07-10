@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as envelop from '../ducks/envelop';
+import multidispatch from '../actionHelper';
 
 const useEnvelop = (id) => {
   const [count, setCount] = useState(0);
@@ -15,12 +16,7 @@ const useEnvelop = (id) => {
     if (!geo) {
       if (!isLoading && count < 10) {
         setCount((x) => x + 1);
-        const actions = envelop.actions.fetch(id);
-        if (Array.isArray(actions)) {
-          actions.map((a) => dispatch(a));
-        } else {
-          dispatch(actions);
-        }
+        multidispatch(dispatch, envelop.actions.fetch(id));
       }
     }
   }, [geo, isLoading, id, count, dispatch]);

@@ -1,108 +1,50 @@
+/* eslint no-param-reassign: ["error", { "props": false }] */
+import produce from 'immer';
+import axios from 'axios';
 import digits from '../store/digits.json';
-// action types
-export const types = {
-  SET: 'DATA/SET',
-  SET_DS_VALUE: 'DATA/SET_DS_VALUE',
-  RANDOM_DATA: 'DATA/RANDOM_DATA',
-};
+
+// FIXME: consolidate all instance of this reference in some kind of config file?
+const mappingAPI = 'http://localhost:8080/v2/';
 
 // initial state
 export const initialState = {
   digits,
-  source: 1,
-  content: [
-    {
-      dsid: 1125,
-      value: 11,
-    },
-    {
-      dsid: 1126,
-      value: 12,
-    },
-    {
-      dsid: 1132,
-      value: 11,
-    },
-  ],
 };
 
 // action creators
 export const actions = {
-  setData: (source, content) => ({
-    type: types.SET,
+  fetchDigits: (sourceURL, hash, indexInFile) => ({
+    type: 'DIGITS',
     payload: {
-      source,
-      content,
-    },
-  }),
-  setDsValue: (dsid, value) => ({
-    type: types.SET_DS_VALUE,
-    payload: {
-      dsid,
-      value,
-    },
-  }),
-  randomData: (deid, bending, dsids) => ({
-    type: types.RANDOM_DATA,
-    payload: {
-      deid,
-      bending,
-      dsids,
+      request: {
+        url: `${sourceURL}/digits?hash=${hash}&indexid=${indexInFile}`,
+      },
     },
   }),
 };
+
+const completeDigits = (bareDigits) => new Promise((resolve, reject) => {
+  // generate the request for the mapping padlist api
+
+  const padlist = bareDigits.map((x) => ({ deid: x.deid, padid: x.padid }));
+  const request = { padlist, keepOrder: true };
+  axios
+    .post(`${mappingAPI}padlist`, request)
+    .then((response) => {
+      resolve({ pads: response.data });
+    })
+    .catch((e) => reject(e));
+});
 
 // reducer
-export default (state = initialState, action) => {
-  if (state === undefined) {
-    return initialState;
+export default produce((draft, action) => {
+  if (action.type === 'RECEIVE_DIGITS') {
+    completeDigits(action.payload.response.digits).then((v) => {
+      // FIXME: must put back bare digit info somehow here as well ?
+      draft.digits.pads = v;
+    });
   }
-  if (action.type === types.RANDOM_DATA) {
-    throw new Error('Implement me');
-  }
-  if (action.type === types.SET) {
-    return {
-      ...state,
-      source: action.payload.source,
-      content: action.payload.content,
-    };
-  }
-  if (action.type === types.SET_DS_VALUE) {
-    throw new Error('Re-implement me with immer');
-    // const newContent = [...state.content];
-    // const { dsid } = action.payload;
-    // let newds = true;
-    // newContent.map((x) => {
-    //   if (x.dsid === dsid) {
-    //     x.value = action.payload.value;
-    //     newds = false;
-    //   }
-    // });
-    // if (newds) {
-    //   return {
-    //     ...state,
-    //     content: newContent.concat({
-    //       dsid: action.payload.dsid,
-    //       value: action.payload.value,
-    //     }),
-    //   };
-    // }
-    // return { ...state, content: newContent };
-  }
-  return state;
-};
+}, initialState);
 
 // selectors
-export const selectors = {
-  source: (state) => state.source,
-  content: (state) => state.content,
-  dsValue: (state, dsid) => {
-    let v = -1;
-    state.content.forEach((x) => {
-      if (x.dsid === dsid) {
-        v = x.value;
-      }
-    });
-    return v;
-  },
-};
+export const selectors = {};

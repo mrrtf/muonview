@@ -98,7 +98,13 @@ const DataSourceSlider = ({
             </Grid>
           </Grid>
           <Grid item xs={3}>
-            <Button onClick={onClick} variant={button.style} color="primary">
+            <Button
+              onClick={() => {
+                onClick(value);
+              }}
+              variant={button.style}
+              color="primary"
+            >
               {button.text}
             </Button>
           </Grid>
