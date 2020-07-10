@@ -75,7 +75,26 @@ const getFile = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getFileByHash = (hash) => new Promise((resolve, reject) => {
+  const file = store.files.find((x) => x.sha256 === hash);
+  if (!file) {
+    return reject(new Error(`File ${file.id}does not exist`));
+  }
+  if (file.index) {
+    console.log('file ', file.filename, 'already indexed. Returning it');
+    return resolve(file);
+  }
+  console.log('indexing file ', file.filename);
+  return indexFile(file.filename, file.format)
+    .then((result) => {
+      file.index = result.indexList;
+      return resolve(file);
+    })
+    .catch((error) => reject(error));
+});
+
 module.exports = {
   store,
   getFile,
+  getFileByHash,
 };
