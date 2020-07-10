@@ -6,23 +6,22 @@ const { indexFile } = require('./read-utils');
 
 let store = null;
 
-const createHashFromFile = (filePath, id) => {
+const createHashFromFile = (filePath) => {
   const hash = crypto.createHash('sha1');
   let r = null;
   const fd = fs.createReadStream(filePath).on('end', () => {
     hash.end();
     r = hash.digest('hex');
-    const file = store.files.find((x) => x.id === id);
+    const file = store.files.find((x) => x.filename === filePath);
     file.sha256 = r;
   });
   fd.pipe(hash);
   return r;
 };
 
-const createFile = (id, filename, format, kind) => {
-  const sha = createHashFromFile(filename, id);
+const createFile = (filename, format, kind) => {
+  const sha = createHashFromFile(filename);
   return {
-    id,
     filename,
     format,
     kind,
@@ -37,19 +36,13 @@ const createDefaultStore = () => {
 
   files.push(
     createFile(
-      1,
       '/Users/laurent/cernbox/o2muon/dpl-digits.bin',
       'dplsink',
       'digits',
     ),
   );
   files.push(
-    createFile(
-      2,
-      '/Users/laurent/cernbox/o2muon/digits.v2.in',
-      'mchbin',
-      'digits',
-    ),
+    createFile('/Users/laurent/cernbox/o2muon/digits.v2.in', 'mchbin', 'digits'),
   );
 
   return { files };
@@ -57,25 +50,8 @@ const createDefaultStore = () => {
 
 store = createDefaultStore();
 
-const getFile = (id) => new Promise((resolve, reject) => {
-  const file = store.files.find((x) => x.id === id);
-  if (!file) {
-    return reject(new Error(`File ${file.id}does not exist`));
-  }
-  if (file.index) {
-    console.log('file ', file.filename, 'already indexed. Returning it');
-    return resolve(file);
-  }
-  console.log('indexing file ', file.filename);
-  return indexFile(file.filename, file.format)
-    .then((result) => {
-      file.index = result.indexList;
-      return resolve(file);
-    })
-    .catch((error) => reject(error));
-});
-
 const getFileByHash = (hash) => new Promise((resolve, reject) => {
+  console.log('hash=', hash);
   const file = store.files.find((x) => x.sha256 === hash);
   if (!file) {
     return reject(new Error(`File ${file.id}does not exist`));
@@ -95,6 +71,5 @@ const getFileByHash = (hash) => new Promise((resolve, reject) => {
 
 module.exports = {
   store,
-  getFile,
   getFileByHash,
 };

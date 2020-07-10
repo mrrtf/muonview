@@ -1,5 +1,5 @@
 const express = require('express');
-const { getFile } = require('./store');
+const { getFileByHash } = require('./store');
 
 const router = express.Router();
 
@@ -9,18 +9,18 @@ const send = (res, file) => {
     format: file.format,
     index: file.index,
     elemsize: file.kind === 'digits' ? 32 : null,
+    sha256: file.sha256,
   });
 };
 
 router.get('/', (req, res) => {
-  const fileid = Number(req.query.fileid);
-  getFile(fileid).then((file) => {
-    if (!file) {
-      res.send('<h2>not such file</h2>');
-      return;
-    }
-    send(res, file);
-  });
+  getFileByHash(req.query.hash)
+    .then((file) => {
+      send(res, file);
+    })
+    .catch((e) => {
+      res.send(`<h2>no such file: ${e}</h2>`);
+    });
 });
 
 module.exports = router;

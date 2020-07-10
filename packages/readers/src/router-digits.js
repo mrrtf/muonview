@@ -1,5 +1,5 @@
 const express = require('express');
-const { getFile, getFileByHash } = require('./store');
+const { getFileByHash } = require('./store');
 const readDigits = require('./read-digits');
 
 const router = express.Router();
@@ -20,16 +20,6 @@ const readFromFile = (file, indexid, res) => {
   });
 };
 
-const getByFileId = (fileid, indexid, res) => {
-  getFile(fileid)
-    .then((file) => {
-      readFromFile(file, indexid, res);
-    })
-    .catch(() => {
-      res.send('<h2>no such file</h2>');
-    });
-};
-
 const getByFileHash = (hash, indexid, res) => {
   getFileByHash(hash)
     .then((file) => {
@@ -43,13 +33,7 @@ const getByFileHash = (hash, indexid, res) => {
 router.get('/', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   const indexid = Number(req.query.indexid);
-  const fileid = Number(req.query.fileid);
-  // FIXME: remove access by fileid once access by hash is ok
-  if (!Number.isNaN(fileid)) {
-    getByFileId(fileid, indexid, res);
-  } else {
-    getByFileHash(req.query.hash, indexid, res);
-  }
+  getByFileHash(req.query.hash, indexid, res);
 });
 
 module.exports = router;
