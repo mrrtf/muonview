@@ -29,5 +29,5 @@ jobs:
       with:
         version: 4.11.1
     - run: pnpm install
-    - run: pnpm run build --if-present
-    - run: pnpm test
+    - run: pnpm recursive run build --if-present
+    - run: pnpm recursive run test
