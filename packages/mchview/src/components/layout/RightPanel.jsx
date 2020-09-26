@@ -1,9 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { selectors } from '../../reducers';
-import { actions } from '../../ducks/visibility';
-import VerticalOpenCloseButton from '../ui/VerticalOpenCloseButton';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { selectors } from "../../reducers";
+import { actions } from "../../ducks/visibility";
+import VerticalOpenCloseButton from "../ui/VerticalOpenCloseButton";
 
 const RightPanel = ({ visible, toggleVisibility, children }) => (
   <div>

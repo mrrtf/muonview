@@ -1,7 +1,7 @@
-import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import PropTypes from 'prop-types';
-import useEnvelop from '../../hooks/useEnvelop';
+import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import PropTypes from "prop-types";
+import useEnvelop from "../../hooks/useEnvelop";
 
 const EnvelopLayer = ({ id, outlineStyle, component }) => {
   const { isLoading, geo } = useEnvelop(id);

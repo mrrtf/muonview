@@ -1,17 +1,17 @@
 // action types
 export const types = {
-  SET_XMIN: 'AREA/SET_XMIN',
-  SET_XMAX: 'AREA/SET_XMAX',
-  SET_YMIN: 'AREA/SET_YMIN',
-  SET_YMAX: 'AREA/SET_YMAX',
+  SET_XMIN: "AREA/SET_XMIN",
+  SET_XMAX: "AREA/SET_XMAX",
+  SET_YMIN: "AREA/SET_YMIN",
+  SET_YMAX: "AREA/SET_YMAX",
 };
 
 // initial state
 export const initialState = {
-  xmin: '10',
-  ymin: '10',
-  xmax: '12',
-  ymax: '15',
+  xmin: "10",
+  ymin: "10",
+  xmax: "12",
+  ymax: "15",
 };
 
 // reducer

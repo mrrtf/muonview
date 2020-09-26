@@ -1,66 +1,68 @@
 /* eslint no-use-before-define: ["error", { "variables": false }] */
-import { isEmpty, isEqual } from 'lodash';
-import listOfValidDeIds from './listOfValidDeIds';
+import { isEmpty, isEqual } from "lodash";
+import listOfValidDeIds from "./listOfValidDeIds";
 
 // constants
 
 const mch = {
-  name: 'Muon Tracker',
-  key: 'mch',
+  name: "Muon Tracker",
+  key: "mch",
   depth: 0,
 };
 const station = {
-  name: 'Station',
-  key: 'station',
+  name: "Station",
+  key: "station",
   depth: 1,
 };
 const chamber = {
-  name: 'Chamber',
-  key: 'chamber',
+  name: "Chamber",
+  key: "chamber",
   depth: 2,
 };
 const de = {
-  name: 'Detection Element',
-  key: 'de',
+  name: "Detection Element",
+  key: "de",
   depth: 3,
 };
 const deplane = {
-  name: 'Plane',
-  key: 'deplane',
+  name: "Plane",
+  key: "deplane",
   depth: 4,
 };
 const ds = {
-  name: 'Dual Sampa',
-  key: 'ds',
+  name: "Dual Sampa",
+  key: "ds",
   depth: 4,
 };
 const pad = {
-  name: 'Pad',
-  key: 'pad',
+  name: "Pad",
+  key: "pad",
   depth: 5,
 };
 const cluster = {
-  name: 'Cluster',
-  key: 'cluster',
+  name: "Cluster",
+  key: "cluster",
   depth: 4,
 };
 const area = {
-  name: 'Area',
-  key: 'area',
+  name: "Area",
+  key: "area",
   depth: 4,
 };
 
-export const hasBending = (id) => id.bending != null && Object.prototype.hasOwnProperty.call(id, 'bending');
+export const hasBending = (id) =>
+  id.bending != null && Object.prototype.hasOwnProperty.call(id, "bending");
 
-export const isValidCategory = (c) => isEqual(c, mch)
-  || isEqual(c, station)
-  || isEqual(c, de)
-  || isEqual(c, ds)
-  || isEqual(c, chamber)
-  || isEqual(c, deplane)
-  || isEqual(c, cluster)
-  || isEqual(c, area)
-  || isEqual(c, pad);
+export const isValidCategory = (c) =>
+  isEqual(c, mch) ||
+  isEqual(c, station) ||
+  isEqual(c, de) ||
+  isEqual(c, ds) ||
+  isEqual(c, chamber) ||
+  isEqual(c, deplane) ||
+  isEqual(c, cluster) ||
+  isEqual(c, area) ||
+  isEqual(c, pad);
 
 // convert id to destination
 export const convertId = (id, dest) => {
@@ -82,8 +84,8 @@ export const convertId = (id, dest) => {
         throw new Error(
           "don't know (yet) how to convert from",
           JSON.stringify(id),
-          'to',
-          JSON.stringify(dest),
+          "to",
+          JSON.stringify(dest)
         );
     }
   }
@@ -98,40 +100,40 @@ export const whatis = (id) => {
     return null;
   }
   if (
-    Object.prototype.hasOwnProperty.call(id, 'clusterid')
-    && Object.prototype.hasOwnProperty.call(id, 'deid')
+    Object.prototype.hasOwnProperty.call(id, "clusterid") &&
+    Object.prototype.hasOwnProperty.call(id, "deid")
   ) {
     return cluster;
   }
   if (
-    Object.prototype.hasOwnProperty.call(id, 'deid')
-    && Object.prototype.hasOwnProperty.call(id, 'padid')
+    Object.prototype.hasOwnProperty.call(id, "deid") &&
+    Object.prototype.hasOwnProperty.call(id, "padid")
   ) {
     return pad;
   }
   if (
-    Object.prototype.hasOwnProperty.call(id, 'deid')
-    && Object.prototype.hasOwnProperty.call(id, 'dsid')
-    && Object.prototype.hasOwnProperty.call(id, 'dsch')
+    Object.prototype.hasOwnProperty.call(id, "deid") &&
+    Object.prototype.hasOwnProperty.call(id, "dsid") &&
+    Object.prototype.hasOwnProperty.call(id, "dsch")
   ) {
     return pad;
   }
   if (
-    Object.prototype.hasOwnProperty.call(id, 'deid')
-    && Object.prototype.hasOwnProperty.call(id, 'dsid')
+    Object.prototype.hasOwnProperty.call(id, "deid") &&
+    Object.prototype.hasOwnProperty.call(id, "dsid")
   ) {
     return ds;
   }
   if (
-    Object.prototype.hasOwnProperty.call(id, 'bending')
-    && Object.prototype.hasOwnProperty.call(id, 'deid')
+    Object.prototype.hasOwnProperty.call(id, "bending") &&
+    Object.prototype.hasOwnProperty.call(id, "deid")
   ) {
     return deplane;
   }
-  if (Object.prototype.hasOwnProperty.call(id, 'deid')) {
+  if (Object.prototype.hasOwnProperty.call(id, "deid")) {
     return de;
   }
-  if (Object.prototype.hasOwnProperty.call(id, 'chid')) {
+  if (Object.prototype.hasOwnProperty.call(id, "chid")) {
     return chamber;
   }
   return null;
@@ -150,7 +152,7 @@ export const isSpecific = (id) => {
     case ds:
       return id.dsid !== null && id.bending !== null;
     case pad:
-      if (Object.prototype.hasOwnProperty.call(id, 'padid')) {
+      if (Object.prototype.hasOwnProperty.call(id, "padid")) {
         return id.padid !== null;
       }
       return id.dsch !== null;
@@ -160,7 +162,7 @@ export const isSpecific = (id) => {
       throw new Error(
         `isSpecific not implemented for id=${JSON.stringify(id)} of category ${
           w.name
-        }`,
+        }`
       );
   }
 };
@@ -191,10 +193,10 @@ export const parent = (id) => {
       return { deid: id.deid };
     case pad: {
       let p = { deid: id.deid };
-      if (Object.prototype.hasOwnProperty.call(id, 'bending')) {
+      if (Object.prototype.hasOwnProperty.call(id, "bending")) {
         p = { deid: id.deid, bending: id.bending };
       }
-      if (Object.prototype.hasOwnProperty.call(id, 'dsid')) {
+      if (Object.prototype.hasOwnProperty.call(id, "dsid")) {
         p = { deid: id.deid, dsid: id.dsid };
       }
       return p;
@@ -205,8 +207,8 @@ export const parent = (id) => {
     default:
       throw new Error(
         `parent(id) must be implemented for id=${JSON.stringify(
-          id,
-        )} of category ${w.name}`,
+          id
+        )} of category ${w.name}`
       );
   }
 };
@@ -224,7 +226,7 @@ export const isValid = (id) => {
     return isValid(parent(id)) && !(Number.isNaN(id.dsid) || id.dsid === null);
   }
   if (w === pad) {
-    if (Object.prototype.hasOwnProperty.call(id, 'padid')) {
+    if (Object.prototype.hasOwnProperty.call(id, "padid")) {
       return isValid(parent(id)) && !Number.isNaN(id.padid);
     }
     return isValid(parent(id)) && !Number.isNaN(id.dsch);
@@ -238,7 +240,7 @@ export const isValid = (id) => {
 export const describeId = (id) => {
   const w = whatis(id);
   if (w == null) {
-    return '';
+    return "";
   }
   if (!isSpecific(id)) {
     return nameAll(id);
@@ -251,13 +253,13 @@ export const describeId = (id) => {
       return `${w.name} ${id.deid}`;
     case deplane:
       return `${describeId(parent(id))} ${
-        id.bending === 'true' || id.bending === true ? 'Bending' : 'Non-Bending'
+        id.bending === "true" || id.bending === true ? "Bending" : "Non-Bending"
       } ${w.name}`;
     case ds: {
       return `${describeId(parent(id))} ${w.name} ${id.dsid}`;
     }
     case pad: {
-      if (Object.prototype.hasOwnProperty.call(id, 'padid')) {
+      if (Object.prototype.hasOwnProperty.call(id, "padid")) {
         return `${describeId(parent(id))} PadId ${id.padid}`;
       }
       return `${describeId(parent(id))} Channel ${id.dsch}`;
@@ -266,23 +268,23 @@ export const describeId = (id) => {
       return `${describeId(parent(id))} ${w.name} ${id.clusterid}`;
     }
     default:
-      throw new Error('not implemented');
+      throw new Error("not implemented");
   }
 };
 
 export const nameAll = (id) => {
   const w = whatis(id);
   if (w == null) {
-    return '';
+    return "";
   }
-  let rv = '';
+  let rv = "";
 
   const p = parent(id);
   if (isSpecific(p)) {
     rv = describeId(p);
   }
-  if (rv !== '') {
-    rv += ' ';
+  if (rv !== "") {
+    rv += " ";
   }
 
   rv += `All ${whatis(id).name}s`;
@@ -291,12 +293,12 @@ export const nameAll = (id) => {
 
 const nameInvalid = (w) => `invalid${w.name}`;
 
-export const encode = (id) => describeId(id).toLowerCase().replace(/ /g, '-');
+export const encode = (id) => describeId(id).toLowerCase().replace(/ /g, "-");
 
 /* Return { deid:X, dsid: Y, dsch: Z } for id="X-Y-Z"
  */
 export const decode = (s) => {
-  const a = s.split('-');
+  const a = s.split("-");
   const id = {
     deid: Number(a[0]),
     dsid: Number(a[1]),
@@ -305,7 +307,5 @@ export const decode = (s) => {
   return id;
 };
 
-export {
-  de, deplane, chamber, area, cluster, ds, pad,
-};
+export { de, deplane, chamber, area, cluster, ds, pad };
 export const all = [de, deplane, chamber, area, cluster, ds, pad];

@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Target = ({
-  x, y, color = 'black', scale = 1.0,
-}) => {
+const Target = ({ x, y, color = "black", scale = 1.0 }) => {
   const w = 4;
   const xleft = x - w;
   const xright = x + w;
@@ -14,7 +12,7 @@ const Target = ({
   return (
     <g
       pointerEvents="none"
-      style={{ fill: 'none', stroke: color, strokeWidth: 0.3 }}
+      style={{ fill: "none", stroke: color, strokeWidth: 0.3 }}
       transform={`translate(${xoff},${yoff}) scale(${scale})`}
     >
       <circle cx={x} cy={y} r={1.75} />

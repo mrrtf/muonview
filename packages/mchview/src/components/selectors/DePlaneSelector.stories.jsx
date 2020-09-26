@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import DePlaneSelector from './DePlaneSelector';
+import React, { useState } from "react";
+import DePlaneSelector from "./DePlaneSelector";
 
 export default {
   component: DePlaneSelector,
-  title: 'DePlane/Selector',
+  title: "DePlane/Selector",
 };
 
 export const InvalidDeId = () => (

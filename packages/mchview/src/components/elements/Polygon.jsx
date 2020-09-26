@@ -1,16 +1,16 @@
-import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { pickBy } from 'lodash';
-import { actions as viewActions } from '../../ducks/view';
-import { encode } from '../../categories';
+import React, { useRef } from "react";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { pickBy } from "lodash";
+import { actions as viewActions } from "../../ducks/view";
+import { encode } from "../../categories";
 
 const Polygon = ({ poly, fillColor, classname }) => {
   const dispatch = useDispatch();
   const element = useRef(null);
 
   const st = {
-    fill: fillColor || 'red',
+    fill: fillColor || "red",
     fillOpacity: fillColor ? 1 : 0,
   };
 
@@ -26,7 +26,7 @@ const Polygon = ({ poly, fillColor, classname }) => {
         id={encode(poly.id)}
         key={encode(poly.id)}
         data-value={poly.value}
-        points={poly.vertices.map((v) => [v.x, v.y].join(','))}
+        points={poly.vertices.map((v) => [v.x, v.y].join(","))}
         style={st}
         onMouseEnter={() => {
           dispatch(
@@ -34,9 +34,9 @@ const Polygon = ({ poly, fillColor, classname }) => {
               ...poly,
               style: pickBy(
                 window.getComputedStyle(element.current),
-                (value, key) => key.startsWith('stroke'),
+                (value, key) => key.startsWith("stroke")
               ),
-            }),
+            })
           );
         }}
         onMouseOut={() => {
@@ -54,7 +54,7 @@ Polygon.propTypes = {
       PropTypes.shape({
         x: PropTypes.number,
         y: PropTypes.number,
-      }),
+      })
     ),
     value: PropTypes.number,
   }),

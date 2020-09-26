@@ -1,9 +1,9 @@
-import React from 'react';
-import DataSourceSlider from './DataSourceSlider';
+import React from "react";
+import DataSourceSlider from "./DataSourceSlider";
 
 export default {
-  component: 'DataSourceSlider',
-  title: 'DataSource/SliderSelector',
+  component: "DataSourceSlider",
+  title: "DataSource/SliderSelector",
 };
 
 const createItems = (nevents, maxPerEvent, prob) => {

@@ -1,11 +1,9 @@
-import React from 'react';
-import EnvelopLayer from './EnvelopLayer';
-import DePlane from './DePlane';
-import DualSampas from './DualSampas';
-import DigitLayer from './DigitLayer';
-import {
-  deplane, ds, pad, describeId, convertId,
-} from '../../categories';
+import React from "react";
+import EnvelopLayer from "./EnvelopLayer";
+import DePlane from "./DePlane";
+import DualSampas from "./DualSampas";
+import DigitLayer from "./DigitLayer";
+import { deplane, ds, pad, describeId, convertId } from "../../categories";
 
 const createLayer = (layer, id, outlineStyle) => {
   const cid = convertId(id, layer);

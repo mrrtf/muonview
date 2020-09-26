@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const VerticalLine = ({
-  x, ymin, ymax, classname,
-}) => {
+const VerticalLine = ({ x, ymin, ymax, classname }) => {
   if (Number.isNaN(x) || Number.isNaN(ymin) || Number.isNaN(ymax)) {
     return null;
   }

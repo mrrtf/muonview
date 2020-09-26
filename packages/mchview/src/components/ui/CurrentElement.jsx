@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { describeId, isValid } from '../../categories';
+import React from "react";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import { describeId, isValid } from "../../categories";
 
 const CurrentElement = ({ element }) => {
   if (!element) {
@@ -24,7 +24,7 @@ const CurrentElement = ({ element }) => {
         <li>
           <Typography>
             {describeId(id)}
-            {isValid(id) ? '' : <span>[ Invalid ID ]</span>}
+            {isValid(id) ? "" : <span>[ Invalid ID ]</span>}
           </Typography>
         </li>
         {value ? (

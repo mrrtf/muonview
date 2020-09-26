@@ -1,7 +1,7 @@
-import expect from 'expect';
-import areaReducer, { actions, types, initialState } from './area';
+import expect from "expect";
+import areaReducer, { actions, types, initialState } from "./area";
 
-describe('actions', () => {
+describe("actions", () => {
   it("should create an action to set area's xmin to 42", () => {
     const expected = {
       type: types.SET_XMIN,
@@ -13,9 +13,9 @@ describe('actions', () => {
   });
 });
 
-describe('area reducer', () => {
+describe("area reducer", () => {
   const ini = areaReducer(undefined, {});
-  it('should return the initial state', () => {
+  it("should return the initial state", () => {
     expect(ini).toEqual(initialState);
   });
 });

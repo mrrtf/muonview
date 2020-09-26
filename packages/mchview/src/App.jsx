@@ -1,8 +1,8 @@
-import { hot } from 'react-hot-loader';
-import React from 'react';
-import './App.css';
+import { hot } from "react-hot-loader";
+import React from "react";
+import "./App.css";
 
-const message = 'Welcome to mchview';
+const message = "Welcome to mchview";
 const App = () => (
   <div className="App">
     <h1>{message}</h1>

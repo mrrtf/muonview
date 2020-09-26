@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import SVGGroup from './SVGGroup';
-import { decode } from '../../categories';
-import Pad from './Pad';
+import React from "react";
+import PropTypes from "prop-types";
+import SVGGroup from "./SVGGroup";
+import { decode } from "../../categories";
+import Pad from "./Pad";
 
 const Digits = ({
   pads,
   bending,
   outlineStyle = {
-    stroke: bending ? 'green' : 'blue',
+    stroke: bending ? "green" : "blue",
     strokeWidth: 0.2,
   },
 }) => {
@@ -16,8 +16,8 @@ const Digits = ({
     const id = decode(x.id);
     const { dsid } = id;
     if (
-      (bending === true && dsid < 1024)
-      || (bending === false && dsid >= 1024)
+      (bending === true && dsid < 1024) ||
+      (bending === false && dsid >= 1024)
     ) {
       return <Pad key={x.id} id={id} vertices={x.vertices} />;
     }

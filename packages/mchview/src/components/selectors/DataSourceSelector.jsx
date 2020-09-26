@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { isEmpty } from 'lodash';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { isEmpty } from "lodash";
 
 const DataSourceSelector = ({ url, timestamp, data }) => (
   <ul>
     <li>{url}</li>
     <li>{timestamp}</li>
-    <li>{isEmpty(data) ? 'NODATA' : 'SOMEDATA'}</li>
+    <li>{isEmpty(data) ? "NODATA" : "SOMEDATA"}</li>
   </ul>
 );
 
@@ -18,7 +18,7 @@ DataSourceSelector.propTypes = {
 };
 
 const mapStateToProps = () => ({
-  url: 'https://wonderful.com',
+  url: "https://wonderful.com",
   timestamp: 42,
   data: {},
 });
