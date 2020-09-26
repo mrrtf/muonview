@@ -21,7 +21,7 @@ describe("convertId", () => {
     id = { deid: null, dsid: null };
     expect(categories.convertId(id, categories.ds)).toBe(id);
   });
-  it("convert from de", () => {
+  it.skip("convert from de", () => {
     expect(categories.convertId({ deid: 102 }, categories.ds)).toStrictEqual({
       deid: 102,
       dsid: null,

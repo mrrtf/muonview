@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "variables": false }] */
-import { isEmpty, isEqual } from "lodash";
+import { isEmpty, isEqual, omit } from "lodash";
 import listOfValidDeIds from "./listOfValidDeIds";
 
 // constants
@@ -54,15 +54,15 @@ export const hasBending = (id) =>
   id.bending != null && Object.prototype.hasOwnProperty.call(id, "bending");
 
 export const isValidCategory = (c) =>
-  isEqual(c, mch) ||
-  isEqual(c, station) ||
-  isEqual(c, de) ||
-  isEqual(c, ds) ||
-  isEqual(c, chamber) ||
-  isEqual(c, deplane) ||
-  isEqual(c, cluster) ||
-  isEqual(c, area) ||
-  isEqual(c, pad);
+  isEqual(c, omit(mch, ["depth"])) ||
+  isEqual(c, omit(station, ["depth"])) ||
+  isEqual(c, omit(de, ["depth"])) ||
+  isEqual(c, omit(ds, ["depth"])) ||
+  isEqual(c, omit(chamber, ["depth"])) ||
+  isEqual(c, omit(deplane, ["depth"])) ||
+  isEqual(c, omit(cluster, ["depth"])) ||
+  isEqual(c, omit(area, ["depth"])) ||
+  isEqual(c, omit(pad, ["depth"]));
 
 // convert id to destination
 export const convertId = (id, dest) => {
