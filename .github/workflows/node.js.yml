@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -28,6 +28,6 @@ jobs:
       uses: pnpm/action-setup@v1.2.0
       with:
         version: 4.11.1
-    - run: pnpm ci
+    - run: pnpm install
     - run: pnpm run build --if-present
     - run: pnpm test
