@@ -2,13 +2,8 @@ import expect from "expect";
 import * as categories from "./categories";
 
 describe("isValidCategory", () => {
-  it("{de,Detection Element} should be a valid category", () => {
-    expect(
-      categories.isValidCategory({
-        key: categories.de.key,
-        name: categories.de.name,
-      })
-    ).toBe(true);
+  it(`${JSON.stringify(categories.de)} should be a valid category`, () => {
+    expect(categories.isValidCategory(categories.de)).toBe(true);
   });
 });
 
