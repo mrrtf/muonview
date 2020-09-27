@@ -18,6 +18,7 @@ import multidispatch from "../../actionHelper";
 import VisibilitySelectorBar from "../selectors/VisibilitySelectorBar";
 import DePlaneViewHeader from "./DePlaneViewHeader";
 import Alert from "@material-ui/lab/Alert";
+import StatusBar from "../layout/StatusBar";
 
 const ErrorMessage = ({ message }) => <Alert severity="error">{message}</Alert>;
 ErrorMessage.propTypes = {
@@ -36,6 +37,9 @@ const useStyles = makeStyles({
     display: "flex",
     flexFlow: "column nowrap",
     flexGrow: 1,
+  },
+  main: {
+    display: "flex",
   },
 });
 
@@ -128,6 +132,7 @@ const DePlaneView = ({
           )
         }
       />
+      <StatusBar />
       <section className={classes.main}>
         <SVGView
           geo={geo}
