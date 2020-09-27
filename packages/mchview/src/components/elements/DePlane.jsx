@@ -1,6 +1,6 @@
 import React from "react";
-import { scaleSequential } from "d3-scale";
-import { interpolateViridis } from "d3-scale-chromatic";
+// import { scaleSequential } from "d3-scale";
+// import { interpolateViridis } from "d3-scale-chromatic";
 import PropTypes from "prop-types";
 import SVGGroup from "./SVGGroup";
 import Polygon from "./Polygon";
@@ -10,9 +10,9 @@ const DePlane = ({ geo, outlineStyle }) => {
   if (!geo) {
     return null;
   }
-  const color = scaleSequential()
-    .domain([100, 1025])
-    .interpolator(interpolateViridis);
+  // const color = scaleSequential()
+  //   .domain([100, 1025])
+  //   .interpolator(interpolateViridis);
 
   return (
     <SVGGroup groupname="deplane" style={outlineStyle}>
@@ -20,7 +20,7 @@ const DePlane = ({ geo, outlineStyle }) => {
         key={encode(geo.id)}
         prefix="DE"
         poly={geo}
-        fillColor={color(101)}
+        //        fillColor={color(101)}
       />
     </SVGGroup>
   );

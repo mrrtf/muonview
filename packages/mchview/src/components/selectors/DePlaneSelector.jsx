@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -11,8 +11,11 @@ import { isValidDeId } from "../../categories";
 import listOfValidDeIds from "../../listOfValidDeIds";
 
 const useStyles = makeStyles({
-  root: {
-    width: "8em",
+  container: {
+    display: "flex",
+  },
+  textfield: {
+    width: "10em",
   },
 });
 
@@ -31,34 +34,38 @@ const DePlaneSelector = ({ id, setId }) => {
     return "Invalid DE";
   }
   return (
-    <Box display="flex">
-      <Autocomplete
-        id="deid-selector"
-        options={delist}
-        disableClearable
-        groupBy={stationId}
-        value={deid.toString()}
-        onChange={(event, newValue) => setId({ deid: newValue, bending })}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            className={classes.root}
-            variant="outlined"
-            label="DE"
-          />
-        )}
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={bending}
-            onChange={() => setId({ deid, bending: !bending })}
-          />
-        }
-        label="bending"
-        labelPlacement="end"
-      />
-    </Box>
+    <Grid container className={classes.container} alignItems="center">
+      <Grid item>
+        <Autocomplete
+          id="deid-selector"
+          options={delist}
+          disableClearable
+          groupBy={stationId}
+          value={deid.toString()}
+          onChange={(event, newValue) => setId({ deid: newValue, bending })}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              variant="outlined"
+              label="Detection Element"
+            />
+          )}
+        />
+      </Grid>
+      <Grid item>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={bending}
+              onChange={() => setId({ deid, bending: !bending })}
+            />
+          }
+          label="bending"
+          labelPlacement="start"
+        />
+      </Grid>
+    </Grid>
   );
 };
 

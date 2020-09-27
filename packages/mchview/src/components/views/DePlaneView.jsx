@@ -1,18 +1,13 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
-import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import produce from "immer";
-import Alert from "@material-ui/lab/Alert";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import index from "./index.json";
 import * as categories from "../../categories";
-import DePlaneSelector from "../selectors/DePlaneSelector";
-import VisibilitySelectorBar from "../selectors/VisibilitySelectorBar";
 import SVGHighlighter from "../ui/SVGHighlighter";
 import SVGView from "./SVGView";
 import useEnvelop from "../../hooks/useEnvelop";
@@ -20,11 +15,15 @@ import createLayer from "../elements/LayerCreator";
 import DataSourceSlider from "../selectors/DataSourceSlider";
 import { actions } from "../../ducks/data";
 import multidispatch from "../../actionHelper";
+import VisibilitySelectorBar from "../selectors/VisibilitySelectorBar";
+import DePlaneViewHeader from "./DePlaneViewHeader";
+import Alert from "@material-ui/lab/Alert";
 
 const ErrorMessage = ({ message }) => <Alert severity="error">{message}</Alert>;
 ErrorMessage.propTypes = {
   message: PropTypes.string.isRequired,
 };
+
 const getItems = (sample) =>
   sample.index.map((x) => ({
     isLoaded: false,
@@ -32,27 +31,25 @@ const getItems = (sample) =>
   }));
 
 const useStyles = makeStyles({
-  root: {
-    background: "white",
-    position: "fixed",
-    top: "0",
-    paddingTop: "7px",
-    width: "98%",
+  root: {},
+  deplaneview: {
+    display: "flex",
+    flexFlow: "column nowrap",
+    flexGrow: 1,
   },
-  main: { "margin-top": "70px" },
 });
 
-const defaultOutlineStyles = {
+const defaultOutlineStyles = (theme) => ({
   [categories.deplane.name]: {
-    stroke: "green",
+    stroke: theme.palette.primary.main,
     strokeWidth: 0.65,
   },
 
   [categories.ds.name]: {
-    stroke: "lightblue",
+    stroke: theme.palette.primary.dark,
     strokeWidth: 0.15,
   },
-};
+});
 
 const defaultVisibility = {
   [categories.deplane.name]: true,
@@ -70,8 +67,6 @@ const DePlaneView = ({
     categories.pad,
   ],
 }) => {
-  const history = useHistory();
-
   // base layer is special : we must have its geometry to be able
   // to set the SVG stage
   const { isLoading, isError, geo } = useEnvelop(id);
@@ -82,9 +77,11 @@ const DePlaneView = ({
 
   const dispatch = useDispatch();
 
+  const theme = useTheme();
+
   const layerStack = layers.map((layer) =>
     isVisible[layer.name]
-      ? createLayer(layer, id, defaultOutlineStyles[layer.name])
+      ? createLayer(layer, id, defaultOutlineStyles(theme)[layer.name])
       : null
   );
 
@@ -113,22 +110,12 @@ const DePlaneView = ({
   };
 
   return (
-    <div className={classes.main}>
-      <Box className={classes.root} display="flex">
-        <VisibilitySelectorBar
-          elements={isVisible}
-          onChange={onVisibilityChange}
-        />
-        <DePlaneSelector
-          id={id}
-          setId={({ deid, bending }) => {
-            history.push({
-              pathname: "/deplane",
-              search: `?deid=${deid}&bending=${bending}`,
-            });
-          }}
-        />
-      </Box>
+    <div className={classes.deplaneview}>
+      <DePlaneViewHeader id={id} />
+      <VisibilitySelectorBar
+        elements={isVisible}
+        onChange={onVisibilityChange}
+      />
       <DataSourceSlider
         name={dataSource.name}
         items={getItems(index)}
@@ -141,7 +128,7 @@ const DePlaneView = ({
           )
         }
       />
-      <main>
+      <section className={classes.main}>
         <SVGView
           geo={geo}
           initialOffset={{ x: xoff, y: yoff }}
@@ -151,7 +138,7 @@ const DePlaneView = ({
           <SVGHighlighter id={id} color="red" />
         </SVGView>
         <div>{geo ? null : <h1>something is wrong</h1>}</div>
-      </main>
+      </section>
     </div>
   );
 };

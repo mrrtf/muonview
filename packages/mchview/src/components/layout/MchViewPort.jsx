@@ -1,9 +1,21 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import NotFound from "../ui/NotFound";
+import Loading from "../ui/Loading";
 
-const DePlaneView = lazy(() => import("../views/DePlaneView"));
+const DePlaneViewLazy = (delay = 5000) =>
+  lazy(() =>
+    Promise.all([
+      import("../views/DePlaneView"),
+      new Promise((resolve) => setTimeout(resolve, delay)),
+    ]).then(([moduleExports]) => moduleExports)
+  );
+
+const DePlaneView = DePlaneViewLazy(0);
+
+// const DePlaneView = lazy(() => import('../views/DePlaneView'));
+
 const AllView = lazy(() => import("../views/AllView"));
 const DebugView = lazy(() => import("../views/DebugView"));
 const DeView = lazy(() => import("../views/DeView"));
@@ -11,13 +23,8 @@ const DeView = lazy(() => import("../views/DeView"));
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    flexDirection: "column",
-    boxSizing: "border-box",
-    width: "100%",
-    height: "100%",
   },
 });
-const NotFound = () => <h1>404... Boooh</h1>;
 
 const MchViewPort = () => {
   const location = useLocation();
@@ -51,7 +58,7 @@ const MchViewPort = () => {
   }
   const classes = useStyles();
   return (
-    <Suspense fallback={<CircularProgress />}>
+    <Suspense fallback={<Loading />}>
       <div className={classes.root}>
         <Switch>
           <Route

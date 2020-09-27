@@ -1,30 +1,32 @@
+import Grid from "@material-ui/core/Grid";
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import Modal from "@material-ui/core/Modal";
+import { makeStyles } from "@material-ui/core/styles";
 import MainStage from "./MainStage";
-import BottomBar from "./BottomBar";
-import { selectors } from "../../reducers";
-import CCDBSelector from "../selectors/CCDBSelector";
+import StatusBar from "./StatusBar";
+import Footer from "./Footer";
 
-const App = ({ modal }) => (
-  <div>
-    <MainStage />
-    <BottomBar />
-    {modal ? (
-      <Modal>
-        <CCDBSelector title="Fetch Occupancy Map" />
-      </Modal>
-    ) : null}
-  </div>
-);
+const useStyles = makeStyles(() => ({
+  container: {
+    flexFlow: "column nowrap",
+    minHeight: "100vh",
+  },
+}));
 
-App.propTypes = {
-  modal: PropTypes.bool,
+const App = () => {
+  const classes = useStyles();
+  return (
+    <Grid container className={classes.container}>
+      <Grid item>
+        <MainStage />
+      </Grid>
+      <Grid item>
+        <StatusBar />
+      </Grid>
+      <Grid item>
+        <Footer />
+      </Grid>
+    </Grid>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  modal: selectors.isModalVisible(state),
-});
-
-export default connect(mapStateToProps)(App);
+export default App;
