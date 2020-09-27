@@ -17,7 +17,12 @@ import { actions } from "../../ducks/data";
 import multidispatch from "../../actionHelper";
 import VisibilitySelectorBar from "../selectors/VisibilitySelectorBar";
 import DePlaneViewHeader from "./DePlaneViewHeader";
-import ErrorMessage from "";
+import Alert from "@material-ui/lab/Alert";
+
+const ErrorMessage = ({ message }) => <Alert severity="error">{message}</Alert>;
+ErrorMessage.propTypes = {
+  message: PropTypes.string.isRequired,
+};
 
 const getItems = (sample) =>
   sample.index.map((x) => ({

@@ -1,6 +1,6 @@
 import React from "react";
-import { scaleSequential } from "d3-scale";
-import { interpolateViridis } from "d3-scale-chromatic";
+// import { scaleSequential } from "d3-scale";
+// import { interpolateViridis } from "d3-scale-chromatic";
 import PropTypes from "prop-types";
 import SVGGroup from "./SVGGroup";
 import Polygon from "./Polygon";
