@@ -1,12 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { actions as dataActions } from '../../ducks/data';
-import { selectors } from '../../reducers';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { actions as dataActions } from "../../ducks/data";
+import { selectors } from "../../reducers";
 
-const DataSourceCreateButton = ({
-  onClick, deid, bending, dsids,
-}) => (
+const DataSourceCreateButton = ({ onClick, deid, bending, dsids }) => (
   <button
     type="button"
     aria-label="create new data source"
@@ -25,7 +23,8 @@ DataSourceCreateButton.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   // onClick: () => dispatch(actions.showModal())
-  onClick: (deid, bending, dsids) => dispatch(dataActions.randomData(deid, bending, dsids)),
+  onClick: (deid, bending, dsids) =>
+    dispatch(dataActions.randomData(deid, bending, dsids)),
 });
 
 const mapStateToProps = (state) => ({
@@ -34,11 +33,11 @@ const mapStateToProps = (state) => ({
   dsids: selectors.deplane(
     state,
     selectors.deid(state),
-    selectors.bending(state),
+    selectors.bending(state)
   ).dsids,
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(DataSourceCreateButton);

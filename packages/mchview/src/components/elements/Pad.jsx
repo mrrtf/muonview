@@ -1,11 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Polygon from './Polygon';
-import { encode } from '../../categories';
+import React from "react";
+import PropTypes from "prop-types";
+import Polygon from "./Polygon";
+import { encode } from "../../categories";
 
-const Pad = ({
-  id, vertices, value = 0, outlineStyle,
-}) => {
+const Pad = ({ id, vertices, value = 0, outlineStyle }) => {
   const p = {
     vertices,
     value,

@@ -1,4 +1,4 @@
-const airbnb = require("@neutrinojs/airbnb");
+const eslint = require("@neutrinojs/eslint");
 const react = require("@neutrinojs/react");
 const jest = require("@neutrinojs/jest");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
@@ -10,21 +10,9 @@ module.exports = {
     tests: "src",
   },
   use: [
-    airbnb({
+    eslint({
       eslint: {
-        baseConfig: {
-          extends: ["plugin:jest/recommended"],
-          plugins: ["import", "jest"],
-          env: {
-            "jest/globals": true,
-          },
-          rules: {
-            "react/require-default-props": ["off"],
-            "react/forbid-prop-types": ["off"],
-            "react/button-has-type": ["off"],
-            "react/jsx-props-no-spreading": ["off"],
-          },
-        },
+        useEslintrc: true,
       },
     }),
     react({

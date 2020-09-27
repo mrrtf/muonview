@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const FetchButton = ({ fetcher, finalizer }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  let msg = 'Fetch';
+  let msg = "Fetch";
   if (isLoading) {
-    msg = 'Loading';
+    msg = "Loading";
   }
   if (isError) {
-    msg = 'Error';
+    msg = "Error";
   }
   return (
     <button
       type="button"
       arial-label="fetch"
-      className={`fetch${isLoading ? ' loading' : ''}`}
+      className={`fetch${isLoading ? " loading" : ""}`}
       onClick={() => {
         setIsLoading(true);
         return fetcher().then(
@@ -27,7 +27,7 @@ const FetchButton = ({ fetcher, finalizer }) => {
           () => {
             setIsError(true);
             setIsLoading(false);
-          },
+          }
         );
       }}
     >

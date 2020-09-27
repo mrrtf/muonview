@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import SVGGroup from './SVGGroup';
-import { decode } from '../../categories';
-import Pad from './Pad';
-import * as contour from '../../contour/contour';
-import Polygon from './Polygon';
+import React from "react";
+import PropTypes from "prop-types";
+import SVGGroup from "./SVGGroup";
+import { decode } from "../../categories";
+import Pad from "./Pad";
+import * as contour from "../../contour/contour";
+import Polygon from "./Polygon";
 
 const Cluster = ({
   cluster,
   bending = true,
   outlineStyle = {
-    stroke: bending ? 'green' : 'blue',
+    stroke: bending ? "green" : "blue",
     strokeWidth: 0.2,
   },
 }) => {
@@ -20,8 +20,8 @@ const Cluster = ({
     const { dsid } = id;
     deid = id.deid;
     if (
-      (bending === true && dsid < 1024)
-      || (bending === false && dsid >= 1024)
+      (bending === true && dsid < 1024) ||
+      (bending === false && dsid >= 1024)
     ) {
       return <Pad key={x} id={id} vertices={cluster.pads[x].vertices} />;
     }
@@ -52,9 +52,9 @@ const Cluster = ({
       <SVGGroup
         groupname="precluster"
         style={{
-          fill: 'none',
+          fill: "none",
           strokeWidth: 0.3,
-          stroke: 'gray',
+          stroke: "gray",
         }}
       >
         {precluster}

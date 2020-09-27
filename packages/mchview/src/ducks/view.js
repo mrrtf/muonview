@@ -1,8 +1,8 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from "lodash";
 
 // action types
 export const types = {
-  SET_CURRENT_ELEMENT: 'VIEW/SET_CURRENT_ELEMENT',
+  SET_CURRENT_ELEMENT: "VIEW/SET_CURRENT_ELEMENT",
 };
 
 // initial state
@@ -29,8 +29,8 @@ export const actions = {
     type: types.SET_CURRENT_ELEMENT,
     payload: element
       ? {
-        ...element,
-      }
+          ...element,
+        }
       : null,
   }),
 };

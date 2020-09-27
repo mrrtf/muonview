@@ -1,22 +1,20 @@
-import React, { lazy, Suspense } from 'react';
-import {
-  Route, Switch, Redirect, useLocation,
-} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { lazy, Suspense } from "react";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const DePlaneView = lazy(() => import('../views/DePlaneView'));
-const AllView = lazy(() => import('../views/AllView'));
-const DebugView = lazy(() => import('../views/DebugView'));
-const DeView = lazy(() => import('../views/DeView'));
+const DePlaneView = lazy(() => import("../views/DePlaneView"));
+const AllView = lazy(() => import("../views/AllView"));
+const DebugView = lazy(() => import("../views/DebugView"));
+const DeView = lazy(() => import("../views/DeView"));
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    boxSizing: 'border-box',
-    width: '100%',
-    height: '100%',
+    display: "flex",
+    flexDirection: "column",
+    boxSizing: "border-box",
+    width: "100%",
+    height: "100%",
   },
 });
 const NotFound = () => <h1>404... Boooh</h1>;
@@ -34,21 +32,21 @@ const MchViewPort = () => {
     return parsed;
   };
 
-  if (searchParams.has('deid')) {
+  if (searchParams.has("deid")) {
     id = {
-      deid: asInt('deid'),
+      deid: asInt("deid"),
     };
   }
-  if (searchParams.has('bending')) {
+  if (searchParams.has("bending")) {
     id = {
       ...id,
-      bending: searchParams.get('bending') === 'true',
+      bending: searchParams.get("bending") === "true",
     };
   }
-  if (searchParams.has('deid') && searchParams.has('dsid')) {
+  if (searchParams.has("deid") && searchParams.has("dsid")) {
     id = {
       ...id,
-      dsid: asInt('dsid'),
+      dsid: asInt("dsid"),
     };
   }
   const classes = useStyles();

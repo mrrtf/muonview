@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Middleware to intercept actions which have a request key in their payload
 //
@@ -43,6 +43,7 @@ const fetchMiddleware = () => (next) => (action) => {
         const nextAction = {
           type: `ERROR_FETCH_${action.type}`,
           payload: {
+            id: action.payload.request.id,
             message: error,
           },
         };

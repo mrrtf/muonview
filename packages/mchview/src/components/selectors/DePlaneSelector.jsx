@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import { isValidDeId } from '../../categories';
-import listOfValidDeIds from '../../listOfValidDeIds';
+import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { makeStyles } from "@material-ui/core/styles";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
+import { isValidDeId } from "../../categories";
+import listOfValidDeIds from "../../listOfValidDeIds";
 
 const useStyles = makeStyles({
   root: {
-    width: '8em',
+    width: "8em",
   },
 });
 
@@ -28,7 +28,7 @@ const DePlaneSelector = ({ id, setId }) => {
   const { deid, bending } = id;
   const classes = useStyles();
   if (!isValidDeId(deid)) {
-    return 'Invalid DE';
+    return "Invalid DE";
   }
   return (
     <Box display="flex">
@@ -49,12 +49,12 @@ const DePlaneSelector = ({ id, setId }) => {
         )}
       />
       <FormControlLabel
-        control={(
+        control={
           <Switch
             checked={bending}
             onChange={() => setId({ deid, bending: !bending })}
           />
-        )}
+        }
         label="bending"
         labelPlacement="end"
       />

@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const VerticalOpenCloseButton = ({ isOpening, onClick }) => (
   <button
     type="button"
-    aria-label={isOpening ? 'open' : 'close'}
+    aria-label={isOpening ? "open" : "close"}
     onClick={() => onClick()}
   />
 );

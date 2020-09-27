@@ -1,9 +1,9 @@
-import React from 'react';
-import CurrentElement from './CurrentElement';
+import React from "react";
+import CurrentElement from "./CurrentElement";
 
 export default {
   component: CurrentElement,
-  title: 'Status/CurrentElement',
+  title: "Status/CurrentElement",
 };
 
 export const InvalidDe = () => <CurrentElement id={{ deid: null }} />;

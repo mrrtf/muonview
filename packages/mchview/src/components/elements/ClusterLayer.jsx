@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Cluster from './Cluster';
+import React from "react";
+import PropTypes from "prop-types";
+import Cluster from "./Cluster";
 
-import pads from '../../store/cluster.json';
+import pads from "../../store/cluster.json";
 
 const defaultClusters = {
   ...pads,

@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const HorizontalLine = ({
-  y, xmin, xmax, classname,
-}) => {
+const HorizontalLine = ({ y, xmin, xmax, classname }) => {
   if (Number.isNaN(y) || Number.isNaN(xmin) || Number.isNaN(xmax)) {
     return null;
   }

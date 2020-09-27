@@ -1,14 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import MchViewPort from './MchViewPort';
-import RightPanel from './RightPanel';
-import AreaSelector from '../selectors/AreaSelector';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import MchViewPort from "./MchViewPort";
+import RightPanel from "./RightPanel";
+import AreaSelector from "../selectors/AreaSelector";
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
   },
 });
 

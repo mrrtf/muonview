@@ -1,7 +1,7 @@
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 // import PropTypes from "prop-types";
 // import OutlineSelector from "../selectors/OutlineSelector";
 // import * as categories from "../../categories";
@@ -16,7 +16,7 @@ const Rect = ({
   y = 0,
   w = DEFAULT_WIDTH,
   h = DEFAULT_HEIGHT,
-  color = 'lightblue',
+  color = "lightblue",
   transform,
 }) => (
   <rect
@@ -26,14 +26,14 @@ const Rect = ({
     height={h}
     transform={transform}
     style={{
-      fill: 'none',
+      fill: "none",
       stroke: color,
       strokeWidth: 10,
     }}
   />
 );
 
-const mappingServer = () => 'http://localhost:8080/v2';
+const mappingServer = () => "http://localhost:8080/v2";
 const TestComp = () => <h1>This is TestComp</h1>;
 
 const DebugView = () => {
@@ -42,10 +42,10 @@ const DebugView = () => {
   const scale = 0.5;
   const dispatch = useDispatch();
   dispatch({
-    type: 'PADLIST',
+    type: "PADLIST",
     payload: {
       request: {
-        method: 'post',
+        method: "post",
         url: `${mappingServer()}/padlist`,
         data: {
           deid: 102,

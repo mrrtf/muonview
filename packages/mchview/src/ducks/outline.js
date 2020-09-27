@@ -1,36 +1,36 @@
-import { cloneDeep } from 'lodash';
-import * as categories from '../categories';
+import { cloneDeep } from "lodash";
+import * as categories from "../categories";
 
 // action types
 export const types = {
-  ALL: 'OUTLINE/ALL',
-  NONE: 'OUTLINE/NONE',
-  TOGGLE: 'OUTLINE/TOGGLE',
+  ALL: "OUTLINE/ALL",
+  NONE: "OUTLINE/NONE",
+  TOGGLE: "OUTLINE/TOGGLE",
 };
 
 // initial state
 export const initialState = {
   [categories.de.key]: {
     show: false,
-    stroke: '#333333',
+    stroke: "#333333",
     strokeWidth: 0.7,
     disabled: true,
   },
   [categories.deplane.key]: {
     show: false,
-    stroke: '#333333',
+    stroke: "#333333",
     strokeWidth: 0.7,
   },
   [categories.chamber.key]: {
     show: false,
-    stroke: 'black',
+    stroke: "black",
     strokeWidth: 0.5,
     disabled: true,
   },
-  [categories.ds.key]: { show: false, stroke: 'black', strokeWidth: 0.3 },
-  [categories.pad.key]: { show: false, stroke: 'black', strokeWidth: 0.1 },
-  [categories.cluster.key]: { show: false, stroke: 'black', strokeWidth: 0.1 },
-  [categories.area.key]: { show: false, stroke: 'blue', strokeWidth: 0.1 },
+  [categories.ds.key]: { show: false, stroke: "black", strokeWidth: 0.3 },
+  [categories.pad.key]: { show: false, stroke: "black", strokeWidth: 0.1 },
+  [categories.cluster.key]: { show: false, stroke: "black", strokeWidth: 0.1 },
+  [categories.area.key]: { show: false, stroke: "blue", strokeWidth: 0.1 },
 };
 
 // reducer
@@ -93,6 +93,8 @@ export const selectors = {
     }
     return {};
   },
-  getAllSelected: (state) => categories.all.every((x) => state[x.key].show === true),
-  getNoneSelected: (state) => categories.all.every((x) => state[x.key].show === false),
+  getAllSelected: (state) =>
+    categories.all.every((x) => state[x.key].show === true),
+  getNoneSelected: (state) =>
+    categories.all.every((x) => state[x.key].show === false),
 };

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import VerticalLine from '../ui/VerticalLine';
-import HorizontalLine from '../ui/HorizontalLine';
+import React from "react";
+import PropTypes from "prop-types";
+import VerticalLine from "../ui/VerticalLine";
+import HorizontalLine from "../ui/HorizontalLine";
 
 const AreaView = ({ clip, area }) => {
   if (!area) {

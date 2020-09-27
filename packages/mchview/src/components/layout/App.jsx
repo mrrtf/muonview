@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Modal from '@material-ui/core/Modal';
-import MainStage from './MainStage';
-import BottomBar from './BottomBar';
-import { selectors } from '../../reducers';
-import CCDBSelector from '../selectors/CCDBSelector';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Modal from "@material-ui/core/Modal";
+import MainStage from "./MainStage";
+import BottomBar from "./BottomBar";
+import { selectors } from "../../reducers";
+import CCDBSelector from "../selectors/CCDBSelector";
 
 const App = ({ modal }) => (
   <div>

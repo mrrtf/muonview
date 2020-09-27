@@ -1,12 +1,12 @@
-import React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import React from "react";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemText from '@material-ui/core/ListItemText';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import PropTypes from 'prop-types';
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemText from "@material-ui/core/ListItemText";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import PropTypes from "prop-types";
 
 const AvailableDataList = ({ dataList }) => {
   const list = dataList.map((x) => {
@@ -32,7 +32,7 @@ AvailableDataList.propTypes = {
       format: PropTypes.string,
       indexSize: PropTypes.number,
       filename: PropTypes.filename,
-    }),
+    })
   ),
 };
 export default AvailableDataList;

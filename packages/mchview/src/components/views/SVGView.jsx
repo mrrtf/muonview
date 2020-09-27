@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import Target from './Target';
+import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
+import Target from "./Target";
 
 const svgPoint = (x, y, svg) => {
   const point = svg.createSVGPoint();

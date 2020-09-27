@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { selectors } from '../../reducers';
-import { actions } from '../../ducks/area';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { selectors } from "../../reducers";
+import { actions } from "../../ducks/area";
 
 const ValueSelector = ({ name, value, setValue }) => {
   const onChange = (e) => {
@@ -22,9 +22,7 @@ ValueSelector.propTypes = {
   setValue: PropTypes.func.isRequired,
 };
 
-const AreaSelector = ({
-  area, setXmin, setXmax, setYmin, setYmax,
-}) => (
+const AreaSelector = ({ area, setXmin, setXmax, setYmin, setYmax }) => (
   <>
     <form noValidate>
       <ValueSelector name="xmin" value={area.xmin} setValue={setXmin} />
