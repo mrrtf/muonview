@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "variables": false }] */
-import { isEmpty, isEqual, omit } from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import listOfValidDeIds from "./listOfValidDeIds";
 
 // constants
