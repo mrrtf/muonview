@@ -10,13 +10,14 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    margin: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
-});
+}));
 
 const DataSourceSlider = ({ name, items, description, kind, onClick }) => {
   const classes = useStyles();
@@ -83,7 +84,7 @@ const DataSourceSlider = ({ name, items, description, kind, onClick }) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions className={classes.root}>
+      <CardActions className={classes.actions}>
         <Grid container spacing={0}>
           <Grid item xs={9}>
             <Grid container direction="column">

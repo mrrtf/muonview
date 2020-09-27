@@ -20,7 +20,7 @@ const DePlane = ({ geo, outlineStyle }) => {
         key={encode(geo.id)}
         prefix="DE"
         poly={geo}
-        fillColor={color(101)}
+        //        fillColor={color(101)}
       />
     </SVGGroup>
   );
