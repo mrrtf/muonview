@@ -1,10 +1,10 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Header from '../layout/Header';
-import DePlaneSelector from '../selectors/DePlaneSelector';
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
+import Header from "../layout/Header";
+import DePlaneSelector from "../selectors/DePlaneSelector";
 
 const DePlaneViewHeader = ({ id }) => {
   const history = useHistory();
@@ -19,7 +19,7 @@ const DePlaneViewHeader = ({ id }) => {
             id={id}
             setId={({ deid, bending }) => {
               history.push({
-                pathname: '/deplane',
+                pathname: "/deplane",
                 search: `?deid=${deid}&bending=${bending}`,
               });
             }}

@@ -1,21 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import { isValidDeId } from '../../categories';
-import listOfValidDeIds from '../../listOfValidDeIds';
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { makeStyles } from "@material-ui/core/styles";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
+import { isValidDeId } from "../../categories";
+import listOfValidDeIds from "../../listOfValidDeIds";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
+    display: "flex",
   },
   textfield: {
-    width: '10em',
+    width: "10em",
   },
 });
 
@@ -55,12 +55,12 @@ const DePlaneSelector = ({ id, setId }) => {
       </Grid>
       <Grid item>
         <FormControlLabel
-          control={(
+          control={
             <Switch
               checked={bending}
               onChange={() => setId({ deid, bending: !bending })}
             />
-          )}
+          }
           label="bending"
           labelPlacement="start"
         />

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Alert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
-import { describeId, isValid } from '../../categories';
+import React from "react";
+import PropTypes from "prop-types";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Alert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+import { describeId, isValid } from "../../categories";
 
 const useStyles = makeStyles(() => ({
   noelement: {
@@ -29,7 +29,7 @@ const CurrentElement = ({ element }) => {
         <ListItem>
           <ListItemText
             primary={describeId(id)}
-            secondary={isValid(id) ? '' : '[ Invalid ID ]'}
+            secondary={isValid(id) ? "" : "[ Invalid ID ]"}
           />
         </ListItem>
         <ListItem>

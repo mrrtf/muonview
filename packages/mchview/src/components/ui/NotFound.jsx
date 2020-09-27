@@ -1,7 +1,7 @@
-import React from 'react';
-import Alert from '@material-ui/lab/Alert';
-import Typography from '@material-ui/core/Typography';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import Alert from "@material-ui/lab/Alert";
+import Typography from "@material-ui/core/Typography";
+import { useLocation } from "react-router-dom";
 
 const NotFound = () => {
   const loc = useLocation();

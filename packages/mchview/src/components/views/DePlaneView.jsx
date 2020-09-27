@@ -1,33 +1,35 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
-import CircularProgress from '@material-ui/core/CircularProgress';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import produce from 'immer';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import index from './index.json';
-import * as categories from '../../categories';
-import SVGHighlighter from '../ui/SVGHighlighter';
-import SVGView from './SVGView';
-import useEnvelop from '../../hooks/useEnvelop';
-import createLayer from '../elements/LayerCreator';
-import DataSourceSlider from '../selectors/DataSourceSlider';
-import { actions } from '../../ducks/data';
-import multidispatch from '../../actionHelper';
-import VisibilitySelectorBar from '../selectors/VisibilitySelectorBar';
-import DePlaneViewHeader from './DePlaneViewHeader';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import produce from "immer";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import index from "./index.json";
+import * as categories from "../../categories";
+import SVGHighlighter from "../ui/SVGHighlighter";
+import SVGView from "./SVGView";
+import useEnvelop from "../../hooks/useEnvelop";
+import createLayer from "../elements/LayerCreator";
+import DataSourceSlider from "../selectors/DataSourceSlider";
+import { actions } from "../../ducks/data";
+import multidispatch from "../../actionHelper";
+import VisibilitySelectorBar from "../selectors/VisibilitySelectorBar";
+import DePlaneViewHeader from "./DePlaneViewHeader";
+import ErrorMessage from "";
 
-const getItems = (sample) => sample.index.map((x) => ({
-  isLoaded: false,
-  size: (x.end - x.start) / sample.elemsize,
-}));
+const getItems = (sample) =>
+  sample.index.map((x) => ({
+    isLoaded: false,
+    size: (x.end - x.start) / sample.elemsize,
+  }));
 
 const useStyles = makeStyles({
   root: {},
   deplaneview: {
-    display: 'flex',
-    flexFlow: 'column nowrap',
+    display: "flex",
+    flexFlow: "column nowrap",
     flexGrow: 1,
   },
 });
@@ -72,14 +74,10 @@ const DePlaneView = ({
 
   const theme = useTheme();
 
-  const layerStack = layers.map((layer) => (isVisible[layer.name]
-    ? createLayer(layer, id, defaultOutlineStyles(theme)[layer.name])
-    : null));
-
-  const onVisibilityChange = (name, newValue) => setIsVisible(
-    produce((draft) => {
-      draft[name] = newValue;
-    }),
+  const layerStack = layers.map((layer) =>
+    isVisible[layer.name]
+      ? createLayer(layer, id, defaultOutlineStyles(theme)[layer.name])
+      : null
   );
 
   const onVisibilityChange = (name, newValue) =>

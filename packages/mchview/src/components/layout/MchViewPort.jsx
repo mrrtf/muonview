@@ -1,27 +1,28 @@
-import React, { lazy, Suspense } from 'react';
-import {
-  Route, Switch, Redirect, useLocation,
-} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import NotFound from '../ui/NotFound';
-import Loading from '../ui/Loading';
+import React, { lazy, Suspense } from "react";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import NotFound from "../ui/NotFound";
+import Loading from "../ui/Loading";
 
-const DePlaneViewLazy = (delay = 5000) => lazy(() => Promise.all([
-  import('../views/DePlaneView'),
-  new Promise((resolve) => setTimeout(resolve, delay)),
-]).then(([moduleExports]) => moduleExports));
+const DePlaneViewLazy = (delay = 5000) =>
+  lazy(() =>
+    Promise.all([
+      import("../views/DePlaneView"),
+      new Promise((resolve) => setTimeout(resolve, delay)),
+    ]).then(([moduleExports]) => moduleExports)
+  );
 
 const DePlaneView = DePlaneViewLazy(0);
 
 // const DePlaneView = lazy(() => import('../views/DePlaneView'));
 
-const AllView = lazy(() => import('../views/AllView'));
-const DebugView = lazy(() => import('../views/DebugView'));
-const DeView = lazy(() => import('../views/DeView'));
+const AllView = lazy(() => import("../views/AllView"));
+const DebugView = lazy(() => import("../views/DebugView"));
+const DeView = lazy(() => import("../views/DeView"));
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
+    display: "flex",
   },
 });
 

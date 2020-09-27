@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Target from './Target';
+import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Target from "./Target";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    width: '100%',
+    display: "flex",
+    width: "100%",
     padding: theme.spacing(2),
     margin: theme.spacing(0),
   },

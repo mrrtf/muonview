@@ -1,13 +1,13 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import PropTypes from 'prop-types';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import App from './App';
+import React from "react";
+import { Provider } from "react-redux";
+import PropTypes from "prop-types";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import App from "./App";
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: "dark",
   },
 });
 
