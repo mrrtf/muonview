@@ -8,4 +8,4 @@ enableAllPlugins();
 
 const store = configureStore();
 
-render(<Root store={store} />, document.querySelector("mchviewapp"));
+render(<Root store={store} />, document.querySelector("#mchviewapp"));

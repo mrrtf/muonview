@@ -6,9 +6,9 @@ import Target from "./Target";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    width: "100%",
     padding: theme.spacing(2),
     margin: theme.spacing(0),
+    flexGrow: 1,
   },
 }));
 
@@ -57,8 +57,8 @@ const SVGView = ({
     <svg
       className={classes.root}
       ref={svgRef}
-      width="97%"
-      height="97%"
+      // width="97%"
+      // height="97%"
       viewBox={`0 0 ${vx} ${vy}`}
       onWheel={(event) => {
         if (isPanning()) {
